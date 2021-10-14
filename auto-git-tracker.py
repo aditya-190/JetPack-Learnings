@@ -9,7 +9,7 @@ def run():
     status = subprocess.getoutput('git status')
 
     if re.search('Your branch is ahead of', status):
-        print("Already Commited - Just a push away :)")
+        print("\n------ Already Commited - Just a push away ------\n")
         run("push")
         return
     
@@ -39,7 +39,7 @@ def run():
     subprocess.check_call(['git'] + ['commit'] + ['-m'] + [commitMessage])
     subprocess.check_call(['git'] + ['push'])
 
-    print("Commit Done.")
+    print("\n------ Commit Done. ------- \n")
     return
 
 schedule.every(3).seconds.do(run)
