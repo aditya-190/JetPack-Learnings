@@ -2,3 +2,6 @@ Detailed Commit (Auto Tracker) -
 Modified: auto-git-tracker.py - From Auto Tracker.
 Removed: Auto-Commit_Tracker.txt - From Auto Tracker.
 
+Detailed Commit (Auto Tracker) - 
+Added: Auto-Commit_Tracker.txt - From Auto Tracker.
+
