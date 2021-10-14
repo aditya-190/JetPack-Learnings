@@ -18,3 +18,6 @@ Detailed Commit (Auto Tracker) -
 Modified: .idea/.gitignore - From Auto Tracker.
 Modified: Auto-Commit_Tracker.txt - From Auto Tracker.
 
+Detailed Commit (Auto Tracker) - 
+Modified: Auto-Commit_Tracker.txt - From Auto Tracker.
+
