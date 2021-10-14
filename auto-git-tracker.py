@@ -1,4 +1,4 @@
-import subprocess, re, schedule, time, os, sys
+import subprocess, schedule, time, re, os, sys
 from datetime import datetime
 
 def run():
@@ -9,7 +9,7 @@ def run():
     status = subprocess.getoutput('git status')
 
     if re.search('Your branch is ahead of', status):
-        print("\n------ Already Commited - Just a push away ------\n")
+        print("Already Commited - Just a push away :)")
         run("push")
         return
     
@@ -39,10 +39,10 @@ def run():
     subprocess.check_call(['git'] + ['commit'] + ['-m'] + [commitMessage])
     subprocess.check_call(['git'] + ['push'])
 
-    print("\n------ Commit Done. ------- \n")
+    print("Commit Done")
     return
 
-schedule.every(3).seconds.do(run)
+schedule.every(10).minutes.do(run)
 
 while True:
     schedule.run_pending()
