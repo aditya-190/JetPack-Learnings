@@ -2,7 +2,7 @@ import subprocess, re, schedule, time, os
 from datetime import datetime
 
 def run():
-    subprocess.check_call(['cd'] + [os.getcwd()])
+    os.chdir("/Users/adi/Desktop/JetPack-Learnings")
     subprocess.check_call(['git'] + ['add'] + ['.'])
     commitMessage = "Detailed Commit (Auto Tracker) - \n"
     status = subprocess.getoutput('git status')
@@ -44,7 +44,7 @@ def run():
     subprocess.check_call(['git'] + ['push'])
     return
 
-schedule.every(1).minutes.do(run)
+schedule.every(10).seconds.do(run)
 
 while True:
     schedule.run_pending()
