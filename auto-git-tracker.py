@@ -34,13 +34,13 @@ def run():
         for renamed in searchRenamed:
             commitMessage += "Renamed: " + renamed.strip() + " - From Auto Tracker.\n"
 
-    subprocess.check_call(['git'] + ['commit'] + ['-m'] + [commitMessage])
-    subprocess.check_call(['git'] + ['push'])
-
+    print("Commit Done.")
     file = open("Auto-Commit_Tracker.txt","a")
     file.write(commitMessage + "\n")
     file.close()
-
+    
+    subprocess.check_call(['git'] + ['commit'] + ['-m'] + [commitMessage])
+    subprocess.check_call(['git'] + ['push'])
     return
 
 schedule.every(1).minutes.do(run)
