@@ -1,7 +1,8 @@
-import subprocess, re, schedule, time
+import subprocess, re, schedule, time, os
 from datetime import datetime
 
 def run():
+    os.getcwd()
     subprocess.check_call(['git'] + ['add'] + ['.'])
     commitMessage = "Detailed Commit (Auto Tracker) - \n"
     status = subprocess.getoutput('git status')
