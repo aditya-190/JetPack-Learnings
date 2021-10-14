@@ -6,3 +6,6 @@ Added: .idea/modules.xml - From Auto Tracker.
 Added: .idea/vcs.xml - From Auto Tracker.
 Added: auto-git-tracker.py - From Auto Tracker.
 
+Detailed Commit (Auto Tracker) - 
+Added: file.txt - From Auto Tracker.
+

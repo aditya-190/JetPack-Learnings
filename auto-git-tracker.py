@@ -1,4 +1,4 @@
-import subprocess, re
+import subprocess, re, schedule, time
 from datetime import datetime
 
 def run():
@@ -37,10 +37,14 @@ def run():
     subprocess.check_call(['git'] + ['commit'] + ['-m'] + [commitMessage])
     subprocess.check_call(['git'] + ['push'])
 
-    file = open("file.txt","a")
+    file = open("Auto-Commit_Tracker.txt","a")
     file.write(commitMessage + "\n")
     file.close()
 
     return
 
-run()
+schedule.every(1).minutes.do(run)
+
+while True:
+    schedule.run_pending()
+    time.sleep(1)
