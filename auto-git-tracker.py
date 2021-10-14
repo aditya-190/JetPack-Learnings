@@ -1,8 +1,9 @@
-import subprocess, re, schedule, time, os
+import subprocess, re, schedule, time, os, sys
 from datetime import datetime
 
 def run():
-    os.chdir("/Users/adi/Desktop/JetPack-Learnings")
+    directory = sys.argv[0].replace("/auto-git-tracker.py", "") 
+    os.chdir(directory)
     subprocess.check_call(['git'] + ['add'] + ['.'])
     commitMessage = "Detailed Commit (Auto Tracker) - \n"
     status = subprocess.getoutput('git status')
@@ -41,7 +42,7 @@ def run():
     print("Commit Done.")
     return
 
-schedule.every(10).seconds.do(run)
+schedule.every(3).seconds.do(run)
 
 while True:
     schedule.run_pending()
