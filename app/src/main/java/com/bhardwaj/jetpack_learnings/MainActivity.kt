@@ -25,5 +25,5 @@ fun MessageCard(name: String) {
 @Preview
 @Composable
 fun PreviewMessageCard() {
-    MessageCard("Hello Aditya Bhardwaj")
+    MessageCard("Aditya Bhardwaj")
 }
