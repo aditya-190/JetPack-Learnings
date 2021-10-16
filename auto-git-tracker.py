@@ -39,10 +39,10 @@ def run():
     subprocess.check_call(['git'] + ['commit'] + ['-m'] + [commitMessage])
     subprocess.check_call(['git'] + ['push'])
 
-    print("Commit Done")
+    print("Commit Done @" + datetime.now().strftime("%H:%M"))
     return
 
-schedule.every(10).minutes.do(run)
+schedule.every(5).minutes.do(run)
 
 while True:
     schedule.run_pending()
