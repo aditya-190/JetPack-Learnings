@@ -1,5 +1,6 @@
 package com.bhardwaj.jetpack_learnings
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -65,8 +66,13 @@ data class Message(
     val body: String
 )
 
-@Preview
+@Preview(name = "Light Mode")
+@Preview(
+    name = "Dark Mode",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showBackground = true
+)
 @Composable
 fun PreviewMessageCard() {
-    MessageCard(msg = Message("Aditi", "Hello"))
+    MessageCard(msg = Message("Collegue", "Hey, take a look Jetpack Compose, is great"))
 }
