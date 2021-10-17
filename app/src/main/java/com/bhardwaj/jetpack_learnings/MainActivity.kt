@@ -115,17 +115,17 @@ fun Conversation(messages: List<Message>) {
 
 @Composable
 fun MessageCard(msg: Message) {
-    Row(modifier = Modifier.padding(all = 8.dp)) {
+    Row(modifier = Modifier.padding(all = 16.dp)) {
         Image(
             painter = painterResource(id = R.drawable.logo),
             contentDescription = "Sample Image",
             modifier = Modifier
                 .size(40.dp)
                 .clip(CircleShape)
-                .border(2.dp, MaterialTheme.colors.secondary, CircleShape)
+                .border(4.dp, MaterialTheme.colors.secondary, CircleShape)
         )
 
-        Spacer(modifier = Modifier.width(8.dp))
+        Spacer(modifier = Modifier.width(16.dp))
 
         var isExpanded by remember { mutableStateOf(false) }
         val surfaceColor: Color by animateColorAsState(
@@ -139,7 +139,7 @@ fun MessageCard(msg: Message) {
                 style = MaterialTheme.typography.subtitle2
             )
 
-            Spacer(modifier = Modifier.height(4.dp))
+            Spacer(modifier = Modifier.height(8.dp))
 
             Surface(
                 shape = MaterialTheme.shapes.medium,
@@ -151,7 +151,7 @@ fun MessageCard(msg: Message) {
             ) {
                 Text(
                     text = msg.body,
-                    modifier = Modifier.padding(all = 4.dp),
+                    modifier = Modifier.padding(all = 8.dp),
                     maxLines = if (isExpanded) Int.MAX_VALUE else 1,
                     style = MaterialTheme.typography.body2
                 )
