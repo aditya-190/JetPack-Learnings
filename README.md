@@ -1,4 +1,4 @@
-<h1 align="center">JetPack- Learning</h1>
+<h1 align="center">JetPack- Learnings</h1>
 
 ## 👦 Developed By:
 <h2 align="center">Aditya Bhardwaj</h2>
