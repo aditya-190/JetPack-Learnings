@@ -34,6 +34,7 @@ val conversationSample = listOf(
     ),
     Message(
         "Colleague",
+
         "List of Android versions:\n" +
                 "Android KitKat (API 19)\n" +
                 "Android Lollipop (API 21)\n" +
