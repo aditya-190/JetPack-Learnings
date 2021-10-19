@@ -18,6 +18,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -84,18 +86,18 @@ fun LoginPage() {
                         horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
                         OutlinedTextField(
+                            modifier = Modifier.fillMaxWidth(0.8f),
                             value = email.value,
                             onValueChange = { email.value = it },
                             label = { Text(text = "Email Address") },
                             placeholder = { Text(text = "Email Address") },
-                            modifier = Modifier.fillMaxWidth(0.8f)
+                            singleLine = true
                         )
 
                         OutlinedTextField(
+                            modifier = Modifier.fillMaxWidth(0.8f),
                             value = password.value,
                             onValueChange = { password.value = it },
-                            label = { Text(text = "Email Address") },
-                            placeholder = { Text(text = "Email Address") },
                             trailingIcon = {
                                 IconButton(onClick = {
                                     passwordVisibility.value = !passwordVisibility.value
@@ -106,7 +108,11 @@ fun LoginPage() {
                                         tint = if (passwordVisibility.value) Purple500 else Teal200
                                     )
                                 }
-                            }
+                            },
+                            label = { Text(text = "Password") },
+                            placeholder = { Text(text = "Password") },
+                            singleLine = true,
+                            visualTransformation = if (passwordVisibility.value) VisualTransformation.None else PasswordVisualTransformation(),
                         )
                     }
                 }
