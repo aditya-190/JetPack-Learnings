@@ -1,6 +1,7 @@
 package com.bhardwaj.jetpack_learnings.view
 
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -105,7 +106,7 @@ fun LoginPage() {
                                     Icon(
                                         painter = painterResource(id = R.drawable.icon_eye),
                                         contentDescription = "Password",
-                                        tint = if (passwordVisibility.value) Purple500 else Teal200
+                                        tint = if (passwordVisibility.value) Purple500 else Color.Gray
                                     )
                                 }
                             },
@@ -114,6 +115,38 @@ fun LoginPage() {
                             singleLine = true,
                             visualTransformation = if (passwordVisibility.value) VisualTransformation.None else PasswordVisualTransformation(),
                         )
+
+                        Spacer(modifier = Modifier.padding(10.dp))
+
+                        Button(
+                            onClick = {
+                                when {
+                                    email.value.isEmpty() -> Toast.makeText(
+                                        context,
+                                        "Please enter email address.",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    password.value.isEmpty() -> Toast.makeText(
+                                        context,
+                                        "Please enter the password.",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    else -> Toast.makeText(
+                                        context,
+                                        "Logged In Successfully.",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            },
+                            modifier = Modifier
+                                .fillMaxWidth(0.8f)
+                                .height(50.dp)
+
+                        ) {
+                            Text(text = "Sign In", fontSize = 20.sp)
+                        }
+
+                        Spacer(modifier = Modifier.padding(20.dp))
                     }
                 }
             }
