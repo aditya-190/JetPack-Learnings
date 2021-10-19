@@ -24,17 +24,18 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Scaffold {
-                TopAppBar {
-                    
-                }
-                BottomAppBar {
-                    
-                }
-                FloatingActionButton(onClick = {}) {
-
-                }
-            }
+            ScaffoldFunction()
         }
+    }
+}
+
+@Composable
+fun ScaffoldFunction() {
+    Scaffold {
+        floatingActionButton = {
+          FloatingActionButton(onClick = { }) {
+              
+          }  
+        },
     }
 }
