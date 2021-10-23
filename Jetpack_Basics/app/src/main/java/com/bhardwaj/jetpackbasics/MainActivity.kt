@@ -39,7 +39,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            UseOfConstraintLayout()
         }
     }
 }
@@ -380,39 +379,39 @@ fun UseOfConstraintLayout() {
     // You need to IMPORT Constraint Layout First. Check build.gradle - Module File :)
 
     val constraints = ConstraintSet {
-        val greenBox = createRefFor("greenBox")
-        val redBox = createRefFor("redBox")
+        val blackBox1 = createRefFor("blackBox1")
+        val blackBox2 = createRefFor("blackBox2")
 
         val guideline = createGuidelineFromTop(0.5f)
 
-        constrain(greenBox) {
+        constrain(blackBox1) {
             top.linkTo(guideline)
             start.linkTo(parent.start)
             width = Dimension.percent(0.2f)
             height = Dimension.percent(0.2f)
         }
 
-        constrain(redBox) {
-            top.linkTo(greenBox.top)
+        constrain(blackBox2) {
+            top.linkTo(blackBox1.top)
             end.linkTo(parent.end)
             width = Dimension.percent(0.2f)
             height = Dimension.percent(0.2f)
         }
 
-        createHorizontalChain(greenBox, redBox, chainStyle = ChainStyle.Spread)
+        createHorizontalChain(blackBox1, blackBox2, chainStyle = ChainStyle.Spread)
     }
 
     ConstraintLayout(constraints, modifier = Modifier.fillMaxSize()) {
         Box(
             modifier = Modifier
-                .background(Color.Green)
-                .layoutId("greenBox")
+                .background(Color.Black)
+                .layoutId("blackBox1")
         )
 
         Box(
             modifier = Modifier
-                .background(Color.Red)
-                .layoutId("redBox")
+                .background(Color.Black)
+                .layoutId("blackBox2")
         )
     }
 }
