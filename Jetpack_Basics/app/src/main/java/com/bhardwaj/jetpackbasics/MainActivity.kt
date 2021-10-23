@@ -383,21 +383,23 @@ fun UseOfConstraintLayout() {
         val greenBox = createRefFor("greenBox")
         val redBox = createRefFor("redBox")
 
+        val guideline = createGuidelineFromTop(0.5f)
+
         constrain(greenBox) {
-            top.linkTo(parent.top)
+            top.linkTo(guideline)
             start.linkTo(parent.start)
-            width = Dimension.percent(0.1f)
+            width = Dimension.percent(0.2f)
             height = Dimension.percent(0.2f)
         }
 
         constrain(redBox) {
-            top.linkTo(parent.top)
+            top.linkTo(greenBox.top)
             end.linkTo(parent.end)
-            width = Dimension.percent(0.1f)
+            width = Dimension.percent(0.2f)
             height = Dimension.percent(0.2f)
         }
 
-        //createHorizontalChain(greenBox, redBox, chainStyle = ChainStyle.Spread)
+        createHorizontalChain(greenBox, redBox, chainStyle = ChainStyle.Spread)
     }
 
     ConstraintLayout(constraints, modifier = Modifier.fillMaxSize()) {
