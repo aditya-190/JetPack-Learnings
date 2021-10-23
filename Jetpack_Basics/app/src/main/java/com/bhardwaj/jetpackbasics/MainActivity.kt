@@ -97,17 +97,13 @@ fun MakingMaterialCardView(
 ) {
     Card(
         modifier = Modifier
-            .fillMaxWidth(0.5f)
-            .fillMaxHeight(0.5f)
-            .padding(16.dp),
+            .padding(16.dp)
+            .fillMaxWidth(0.7f)
+            .fillMaxHeight(0.5f),
         shape = RoundedCornerShape(16.dp),
         elevation = 6.dp
     ) {
-        Box(
-            modifier = Modifier
-                .padding(16.dp)
-                .background(Color.LightGray)
-        ) {
+        Box {
             Image(
                 painter = painter,
                 contentDescription = contentDescription,
