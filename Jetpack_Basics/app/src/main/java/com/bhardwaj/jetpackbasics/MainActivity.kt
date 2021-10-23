@@ -40,10 +40,18 @@ fun UseOfColumn() {
     }
 }
 
+@Preview
 @Composable
 fun UseOfRow() {
-    Row {
+    Row(
+        modifier = Modifier
+            .background(Color.LightGray)
+            .fillMaxSize(),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceEvenly
+    ) {
         Text(text = "Hello")
         Text(text = "World")
+        Text(text = "Hello")
     }
 }
