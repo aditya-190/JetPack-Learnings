@@ -155,7 +155,8 @@ fun FunWithTextStyles(
             .background(Color(0xFF101010))
     ) {
         Text(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .height(400.dp),
             text = buildAnnotatedString {
                 withStyle(
                     style = SpanStyle(
@@ -186,7 +187,8 @@ fun FunWithTextStyles(
             fontFamily = FontFamily.Cursive,
             fontWeight = FontWeight.Bold,
             fontStyle = FontStyle.Italic,
-            textDecoration = TextDecoration.LineThrough
+            textDecoration = TextDecoration.LineThrough,
+            textAlign = TextAlign.Center,
         )
     }
 }
