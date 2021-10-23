@@ -3,11 +3,10 @@ package com.bhardwaj.jetpackbasics
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -23,6 +22,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
@@ -34,7 +34,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            FunWithTextFieldsButtonsAndSnackBar()
+            UseOfConstraintLayout()
         }
     }
 }
@@ -189,7 +189,7 @@ fun FunWithTextStyles(
 
 @Suppress("unused")
 @Composable
-fun JetPackComposeInternalState() {
+fun InternalState() {
     val color = remember { mutableStateOf(Color.Yellow) }
     Box(
         modifier = Modifier
@@ -208,19 +208,19 @@ fun JetPackComposeInternalState() {
 
 @Suppress("unused")
 @Composable
-fun JetPackComposeExternalState() {
+fun ExternalState() {
     val color = remember { mutableStateOf(Color.Yellow) }
 
     Column(modifier = Modifier.fillMaxSize()) {
-        JetPackComposeExternalStateHelperFunction1 { newColor ->
+        ExternalStateHelperFunction1 { newColor ->
             color.value = newColor
         }
-        JetPackComposeExternalStateHelperFunction2(color)
+        ExternalStateHelperFunction2(color)
     }
 }
 
 @Composable
-fun ColumnScope.JetPackComposeExternalStateHelperFunction1(
+fun ColumnScope.ExternalStateHelperFunction1(
     updateColorUsingLambdaFunction: (Color) -> Unit,
 ) {
     Box(
@@ -241,7 +241,7 @@ fun ColumnScope.JetPackComposeExternalStateHelperFunction1(
 }
 
 @Composable
-fun ColumnScope.JetPackComposeExternalStateHelperFunction2(
+fun ColumnScope.ExternalStateHelperFunction2(
     color: MutableState<Color>
 ) {
     Box(
@@ -254,7 +254,7 @@ fun ColumnScope.JetPackComposeExternalStateHelperFunction2(
 
 @Suppress("unused")
 @Composable
-fun FunWithTextFieldsButtonsAndSnackBar() {
+fun TextFieldsButtonsAndSnackBar() {
     val scaffoldState = rememberScaffoldState()
     var textFieldState by remember { mutableStateOf("") }
     val coroutineScope = rememberCoroutineScope()
@@ -296,4 +296,81 @@ fun FunWithTextFieldsButtonsAndSnackBar() {
             }
         }
     }
+}
+
+@Suppress("unused")
+@Composable
+fun ScrollableColumns() {
+    val scrollState = rememberScrollState()
+    Column(
+        modifier = Modifier.verticalScroll(scrollState)
+    ) {
+        for (i in 1..25) {
+            Text(
+                text = "Item $i",
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(24.dp)
+            )
+        }
+    }
+}
+
+@Suppress("unused")
+@Composable
+fun UseOfLazyColumnWithItems() {
+    LazyColumn {
+        items(count = 5000) {
+            Text(
+                text = "Item $it",
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(24.dp)
+            )
+        }
+    }
+}
+
+@Suppress("unused")
+@Composable
+fun UseOfLazyColumnWithItemsIndexed() {
+    LazyColumn {
+        itemsIndexed(
+            listOf(
+                "Hey",
+                "There",
+                "I",
+                "AM",
+                "ADITYA",
+                "BHARDWAJ",
+                "LEARNING",
+                "BASICS",
+                "OF",
+                "JETPACK",
+                "COMPOSE"
+            )
+        ) { index: Int, item: String ->
+            Text(
+                text = "$item $index",
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(24.dp)
+            )
+        }
+    }
+}
+
+@Suppress("unused")
+@Composable
+fun UseOfConstraintLayout() {
+    // You need to IMPORT Constraint Layout First. Check build.gradle - Module File :)
 }
