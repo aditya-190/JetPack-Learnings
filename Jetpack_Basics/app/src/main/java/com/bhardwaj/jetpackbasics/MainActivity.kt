@@ -22,12 +22,15 @@ import androidx.compose.ui.graphics.painter.BitmapPainter
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -153,12 +156,35 @@ fun FunWithTextStyles(
     ) {
         Text(
             modifier = Modifier.fillMaxSize(),
-            text = "Aditya Bhardwaj",
+            text = buildAnnotatedString {
+                withStyle(
+                    style = SpanStyle(
+                        color = Color.Green,
+                        fontSize = 50.sp
+                    )
+                ) {
+                    append(
+                        "A"
+                    )
+                }
+                append("ditya ")
+
+                withStyle(
+                    style = SpanStyle(
+                        color = Color.Green,
+                        fontSize = 50.sp
+                    )
+                ) {
+                    append(
+                        "B"
+                    )
+                }
+                append("hardwaj")
+            },
             color = Color.White,
             fontSize = 30.sp,
             fontFamily = FontFamily.Cursive,
             fontWeight = FontWeight.Bold,
-            textAlign = TextAlign.Center,
             fontStyle = FontStyle.Italic,
             textDecoration = TextDecoration.LineThrough
         )
