@@ -145,7 +145,6 @@ fun MakingMaterialCardView(
     }
 }
 
-@Preview
 @Composable
 fun FunWithTextStyles(
 ) {
@@ -188,7 +187,11 @@ fun FunWithTextStyles(
             fontWeight = FontWeight.Bold,
             fontStyle = FontStyle.Italic,
             textDecoration = TextDecoration.LineThrough,
-            textAlign = TextAlign.Center,
         )
     }
+}
+
+@Composable
+fun JetPackComposeStates() {
+    
 }
