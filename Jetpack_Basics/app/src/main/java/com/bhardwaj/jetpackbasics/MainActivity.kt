@@ -419,7 +419,7 @@ fun UseOfConstraintLayout() {
 
 @Suppress("unused")
 @Composable
-fun UseOfSideEffectsAndEffectsHandler() {} 
+fun UseOfSideEffectsAndEffectsHandler() {}
 
 
 
