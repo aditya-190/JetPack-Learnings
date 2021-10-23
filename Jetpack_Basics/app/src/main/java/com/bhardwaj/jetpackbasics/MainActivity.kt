@@ -4,10 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -31,12 +28,15 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun UseOfColumn() {
     Column(
+        modifier = Modifier
+            .background(Color.LightGray)
+            .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.background(Color.LightGray)
-            .fillMaxWidth(1f)
+        verticalArrangement = Arrangement.SpaceEvenly
     ) {
         Text(text = "Hello")
         Text(text = "World")
+        Text(text = "Hello")
     }
 }
 
