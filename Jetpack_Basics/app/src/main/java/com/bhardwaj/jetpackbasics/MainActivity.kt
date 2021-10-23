@@ -136,3 +136,21 @@ fun MakingMaterialCardView(
         }
     }
 }
+
+@Preview
+@Composable
+fun FunWithTextStyles(
+) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xFF101010))
+    ) {
+        Text(
+            text = "Aditya Bhardwaj",
+            color = Color.White,
+            fontSize = 30.sp,
+            
+        )
+    }
+}
