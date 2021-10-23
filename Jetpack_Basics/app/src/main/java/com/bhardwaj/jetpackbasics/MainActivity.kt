@@ -27,6 +27,8 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.constraintlayout.compose.ConstraintSet
+import androidx.constraintlayout.compose.Dimension
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
@@ -373,4 +375,40 @@ fun UseOfLazyColumnWithItemsIndexed() {
 @Composable
 fun UseOfConstraintLayout() {
     // You need to IMPORT Constraint Layout First. Check build.gradle - Module File :)
+
+    val constraints = ConstraintSet {
+        val greenBox = createRefFor("greenBox")
+        val redBox = createRefFor("redBox")
+
+        constrain(greenBox) {
+            top.linkTo(parent.top)
+            start.linkTo(parent.start)
+            width = Dimension.value(100.dp)
+            height = Dimension.value(100.dp)
+        }
+
+        constrain(redBox) {
+            top.linkTo(parent.top)
+            start.linkTo(greenBox.end)
+            width = Dimension.value(100.dp)
+            height = Dimension.value(100.dp)
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
