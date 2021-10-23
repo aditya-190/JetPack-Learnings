@@ -101,14 +101,34 @@ fun MakingMaterialCardView(
         shape = RoundedCornerShape(16.dp),
         elevation = 6.dp
     ) {
-        Box(modifier = Modifier.height(200.dp)) {
+        Box(
+            modifier = Modifier
+                .height(200.dp)
+                .background(Color.LightGray)
+        ) {
             Image(
                 painter = painter,
                 contentDescription = contentDescription,
                 contentScale = ContentScale.Crop
             )
 
-            Text(text = title)
+            Text(
+                text = title,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .align(Alignment.BottomStart)
+                    .padding(12.dp)
+            )
         }
     }
+}
+
+@Preview
+@Composable
+fun PreviewMaterialCard() {
+    MakingMaterialCardView(
+        painterResource(id = R.drawable.ic_launcher_background),
+        contentDescription = "Simply an Image.",
+        title = "Aditya Bhardwaj Card View"
+    )
 }
