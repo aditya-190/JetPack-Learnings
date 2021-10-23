@@ -27,13 +27,14 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlinx.coroutines.launch
 import kotlin.random.Random
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            FunWithTextFieldsButtonsAndSnackbar()
+            FunWithTextFieldsButtonsAndSnackBar()
         }
     }
 }
@@ -253,15 +254,46 @@ fun ColumnScope.JetPackComposeExternalStateHelperFunction2(
 
 @Suppress("unused")
 @Composable
-fun FunWithTextFieldsButtonsAndSnackbar() {
+fun FunWithTextFieldsButtonsAndSnackBar() {
     val scaffoldState = rememberScaffoldState()
+    var textFieldState by remember { mutableStateOf("") }
+    val coroutineScope = rememberCoroutineScope()
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         scaffoldState = scaffoldState
     ) {
-        Snackbar {
-            Text(text = "Hello Good Job !!!")
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 16.dp)
+        ) {
+            TextField(
+                value = textFieldState,
+                label = {
+                    Text(text = "Enter Your Name")
+                },
+                onValueChange = { newString ->
+                    textFieldState = newString
+                },
+                singleLine = true,
+                modifier = Modifier.fillMaxWidth()
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+            Button(
+                onClick = {
+                    coroutineScope.launch {
+                        scaffoldState.snackbarHostState.showSnackbar(textFieldState)
+                    }
+                },
+                modifier = Modifier.align(Alignment.End)
+
+            ) {
+                Text(text = "Let's See What you typed.")
+            }
         }
     }
 }
