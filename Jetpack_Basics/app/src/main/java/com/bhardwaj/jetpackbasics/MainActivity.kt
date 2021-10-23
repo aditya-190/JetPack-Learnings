@@ -32,43 +32,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(16.dp),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.SpaceEvenly
-            ) {
-                MakingMaterialCardView(
-                    painterResource(id = R.drawable.ic_launcher_background),
-                    contentDescription = "Simply an Image.",
-                    title = "1st Card View"
-                )
-
-                MakingMaterialCardView(
-                    painterResource(id = R.drawable.ic_launcher_background),
-                    contentDescription = "Simply an Image.",
-                    title = "2nd Card View"
-                )
-
-                MakingMaterialCardView(
-                    painterResource(id = R.drawable.ic_launcher_background),
-                    contentDescription = "Simply an Image.",
-                    title = "3rd Card View"
-                )
-
-                MakingMaterialCardView(
-                    painterResource(id = R.drawable.ic_launcher_background),
-                    contentDescription = "Simply an Image.",
-                    title = "4th Card View"
-                )
-
-                MakingMaterialCardView(
-                    painterResource(id = R.drawable.ic_launcher_background),
-                    contentDescription = "Simply an Image.",
-                    title = "5th Card View"
-                )
-            }
         }
     }
 }
@@ -131,15 +94,14 @@ fun MakingMaterialCardView(
     title: String,
 ) {
     Card(
+        modifier = Modifier
+            .padding(16.dp)
+            .fillMaxWidth(0.5f)
+            .fillMaxHeight(0.4f),
         shape = RoundedCornerShape(16.dp),
         elevation = 6.dp
     ) {
-        Box(
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth(0.5f)
-                .fillMaxHeight(0.4f),
-        ) {
+        Box {
             Image(
                 painter = painter,
                 contentDescription = contentDescription,
