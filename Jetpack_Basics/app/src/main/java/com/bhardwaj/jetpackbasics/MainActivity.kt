@@ -94,22 +94,25 @@ fun MakingMaterialCardView(
     painter: Painter,
     contentDescription: String,
     title: String,
-    modifier: Modifier = Modifier
 ) {
     Card(
-        modifier = modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth(0.5f)
+            .fillMaxHeight(0.5f)
+            .padding(16.dp),
         shape = RoundedCornerShape(16.dp),
         elevation = 6.dp
     ) {
         Box(
             modifier = Modifier
-                .height(200.dp)
+                .padding(16.dp)
                 .background(Color.LightGray)
         ) {
             Image(
                 painter = painter,
                 contentDescription = contentDescription,
-                contentScale = ContentScale.Crop
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize()
             )
 
             Text(
