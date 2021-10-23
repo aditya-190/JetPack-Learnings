@@ -28,6 +28,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.constraintlayout.compose.ChainStyle
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.Dimension
@@ -385,16 +386,18 @@ fun UseOfConstraintLayout() {
         constrain(greenBox) {
             top.linkTo(parent.top)
             start.linkTo(parent.start)
-            width = Dimension.value(100.dp)
-            height = Dimension.value(100.dp)
+            width = Dimension.percent(0.1f)
+            height = Dimension.percent(0.2f)
         }
 
         constrain(redBox) {
             top.linkTo(parent.top)
-            start.linkTo(greenBox.end)
-            width = Dimension.value(100.dp)
-            height = Dimension.value(100.dp)
+            end.linkTo(parent.end)
+            width = Dimension.percent(0.1f)
+            height = Dimension.percent(0.2f)
         }
+
+        //createHorizontalChain(greenBox, redBox, chainStyle = ChainStyle.Spread)
     }
 
     ConstraintLayout(constraints, modifier = Modifier.fillMaxSize()) {
