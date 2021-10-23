@@ -152,6 +152,7 @@ fun FunWithTextStyles(
             .background(Color(0xFF101010))
     ) {
         Text(
+            modifier = Modifier.fillMaxSize(),
             text = "Aditya Bhardwaj",
             color = Color.White,
             fontSize = 30.sp,
