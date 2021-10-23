@@ -20,6 +20,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.BitmapPainter
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bhardwaj.jetpackbasics.ui.theme.JetpackBasicsTheme
@@ -28,7 +29,11 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MakingMaterialCardView()
+            MakingMaterialCardView(
+                painterResource(id = R.drawable.ic_launcher_background),
+                contentDescription = "Simply an Image.",
+                title = "Aditya Bhardwaj Card View"
+            )
         }
     }
 }
@@ -101,8 +106,9 @@ fun MakingMaterialCardView(
                 painter = painter,
                 contentDescription = contentDescription,
                 contentScale = ContentScale.Crop
-            ),
-            Text(text = "Aditya Bhardwaj")
+            )
+
+            Text(text = title)
         }
     }
 }
