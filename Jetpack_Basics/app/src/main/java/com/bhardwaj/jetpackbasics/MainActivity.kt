@@ -156,7 +156,7 @@ fun FunWithTextStyles(
     ) {
         Text(
             modifier = Modifier
-                .height(400.dp),
+                .align(Alignment.Center),
             text = buildAnnotatedString {
                 withStyle(
                     style = SpanStyle(
