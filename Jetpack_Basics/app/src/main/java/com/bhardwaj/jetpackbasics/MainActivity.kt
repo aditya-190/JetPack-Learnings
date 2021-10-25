@@ -16,6 +16,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.res.painterResource
@@ -515,9 +517,19 @@ fun HowToMakeAnimatedCircularProgressBar(
             modifier = Modifier.size(radius * 2f)
         ) {
             drawArc(
-
+                color = color,
+                startAngle = -90f,
+                sweepAngle = currentPercentage.value * 360,
+                useCenter = false,
+                style = Stroke(strokeWidth.toPx(), cap = StrokeCap.Round)
             )
         }
+        Text(
+            text = (currentPercentage.value * number).toInt().toString(),
+            color = Color.Black,
+            fontSize = 28.sp,
+            fontWeight = FontWeight.Bold
+        )
     }
 }
 
