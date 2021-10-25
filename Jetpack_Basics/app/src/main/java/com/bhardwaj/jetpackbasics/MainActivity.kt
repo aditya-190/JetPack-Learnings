@@ -491,7 +491,34 @@ fun HowToMakeAnimatedCircularProgressBar(
     animationDuration: Int = 1000,
     animationDelay: Int = 0
 ) {
+    var animationPlayed by remember {
+        mutableStateOf(false)
+    }
 
+    val currentPercentage = animateFloatAsState(
+        targetValue = if (animationPlayed) percentage else 0f,
+        animationSpec = tween(
+            durationMillis = animationDuration,
+            delayMillis = animationDelay
+        )
+    )
+
+    LaunchedEffect(key1 = true) {
+        animationPlayed = true
+    }
+
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier.size(radius * 2f)
+    ) {
+        Canvas(
+            modifier = Modifier.size(radius * 2f)
+        ) {
+            drawArc(
+
+            )
+        }
+    }
 }
 
 
