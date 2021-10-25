@@ -42,7 +42,7 @@ def run():
     print("Commit Done @" + datetime.now().strftime("%H:%M"))
     return
 
-schedule.every(5).minutes.do(run)
+schedule.every(1).minutes.do(run)
 
 while True:
     schedule.run_pending()

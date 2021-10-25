@@ -28,6 +28,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ChainStyle
@@ -484,6 +485,11 @@ fun UseOfSimpleAnimation() {
 fun HowToMakeAnimatedCircularProgressBar(
     percentage: Float,
     number: Int,
+    radius: Dp = 50.dp,
+    color: Color = Color.Blue,
+    strokeWidth: Dp = 8.dp,
+    animationDuration: Int = 1000,
+    animationDelay: Int = 0
 ) {
 
 }
