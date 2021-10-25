@@ -479,7 +479,14 @@ fun UseOfSimpleAnimation() {
     }
 }
 
+@Suppress("unused")
+@Composable
+fun HowToMakeAnimatedCircularProgressBar(
+    percentage: Float,
+    number: Int,
+) {
 
+}
 
 
 
