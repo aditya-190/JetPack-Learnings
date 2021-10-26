@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
@@ -545,11 +546,26 @@ fun HowToMakeAnimatedCircularProgressBar(
 
 @Composable
 fun VolumeBar(
-  modifier: Modifier = Modifier,
-  activeBars: Int = 0,
-  barCount: Int = 10
+    modifier: Modifier = Modifier,
+    activeBars: Int = 0,
+    barCount: Int = 10
 ) {
+    BoxWithConstraints(
+        contentAlignment = Alignment.Center,
+        modifier = modifier
+    ) {
+        val barWidth = remember { constraints.maxWidth / (2F * barCount) }
 
+        Canvas(modifier = modifier) {
+            for (i in 0 until barCount) {
+                drawRoundRect(
+                    color = if (i in 0..activeBars) Color.Green else Color.DarkGray,
+                    topLeft = Offset(i * barWidth * 2F + barWidth / 2F, 0F),
+                    size = 
+                )
+            }
+        }
+    }
 }
 
 @ExperimentalComposeUiApi
