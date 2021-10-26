@@ -33,10 +33,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.constraintlayout.compose.ChainStyle
-import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.constraintlayout.compose.ConstraintSet
-import androidx.constraintlayout.compose.Dimension
+import androidx.constraintlayout.compose.*
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
@@ -511,8 +508,10 @@ fun HowToMakeAnimatedCircularProgressBar(
 
     Box(
         contentAlignment = Alignment.Center,
-        modifier = Modifier.size(radius * 2f)
+        modifier = Modifier
+            .size(radius * 2f)
             .padding(16.dp)
+            .fillMaxSize()
     ) {
         Canvas(
             modifier = Modifier.size(radius * 2f)
