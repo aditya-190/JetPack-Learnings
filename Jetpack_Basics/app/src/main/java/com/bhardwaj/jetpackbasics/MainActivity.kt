@@ -485,10 +485,10 @@ fun UseOfSimpleAnimation() {
 fun HowToMakeAnimatedCircularProgressBar(
     percentage: Float,
     number: Int,
-    radius: Dp = 50.dp,
-    color: Color = Color.Blue,
-    strokeWidth: Dp = 8.dp,
-    animationDuration: Int = 1800,
+    radius: Dp = 100.dp,
+    color: Color = Color.Black,
+    strokeWidth: Dp = 10.dp,
+    animationDuration: Int = 1500,
     animationDelay: Int = 0
 ) {
     var animationPlayed by remember {
@@ -512,7 +512,7 @@ fun HowToMakeAnimatedCircularProgressBar(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
-            .border(1.dp, Color.Black, RectangleShape)
+            .border(5.dp, Color.Black, RectangleShape)
     ) {
         Canvas(
             modifier = Modifier.size(radius * 2f)
@@ -528,7 +528,7 @@ fun HowToMakeAnimatedCircularProgressBar(
         Text(
             text = (currentPercentage.value * number).toInt().toString(),
             color = color,
-            fontSize = 28.sp,
+            fontSize = 36.sp,
             fontWeight = FontWeight.Bold
         )
     }
