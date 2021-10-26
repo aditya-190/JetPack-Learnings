@@ -19,8 +19,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.input.pointer.pointerInteropFilter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.boundsInWindow
 import androidx.compose.ui.layout.layoutId
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
@@ -536,9 +539,31 @@ fun HowToMakeAnimatedCircularProgressBar(
 @Suppress("unused")
 @Composable
 fun HowToMakeDraggableMusicKnob(
-
+    modifier: Modifier = Modifier,
+    limitingAngle: Float = 25F,
+    onValueChange: (Float) -> Unit
 ) {
-    
+    var rotation by remember { mutableStateOf(limitingAngle) }
+    var touchX by remember { mutableStateOf(0F) }
+    var touchY by remember { mutableStateOf(0F) }
+    var centerX by remember { mutableStateOf(0F) }
+    var centerY by remember { mutableStateOf(0F) }
+
+    Image(
+        painter = painterResource(id = R.drawable.knob),
+        contentDescription = "Music Knob",
+        modifier = modifier
+            .fillMaxSize()
+            .onGloballyPositioned { coordinate ->
+                val windowBounds = coordinate.boundsInWindow()
+                centerX = windowBounds.size.width / 2f
+                centerY = windowBounds.size.height / 2f
+            }
+            .pointerInteropFilter { event ->
+                touchX = event.x
+                touchY = event.y
+            }
+    )
 }
 
 
