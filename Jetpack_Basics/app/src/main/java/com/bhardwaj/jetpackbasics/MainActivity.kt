@@ -13,6 +13,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -720,10 +722,52 @@ fun HowToMakeAnimatedSplashScreen() {
     }
 }
 
+@ExperimentalMaterialApi
 @Suppress("unused")
 @Composable
 fun UseOfMultiSelectLazyColumn() {
+    var items by remember {
+        mutableStateOf(
+            (1..20).map {
+                MultiSelectItem(
+                    title = "Item $it",
+                    isSelected = false
+                )
+            }
+        )
+    }
 
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
+        items(items.size) { i ->
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable {
+                        items = items.mapIndexed { index, value ->
+                            if (i == index) {
+                                value.copy(isSelected = !value.isSelected)
+                            } else value
+                        }
+                    }
+                    .padding(16.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(text = items[i].title)
+                if (items[i].isSelected) {
+                    Icon(
+                        imageVector = Icons.Default.Check,
+                        contentDescription = "Selected",
+                        tint = Color.Black,
+                        modifier = Modifier.size(20.dp)
+                    )
+                }
+            }
+        }
+    }
 }
 
 data class MultiSelectItem(
