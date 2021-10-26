@@ -1,7 +1,9 @@
 package com.bhardwaj.jetpackbasics
 
+import android.graphics.drawable.Animatable
 import android.os.Bundle
 import android.view.MotionEvent
+import android.view.animation.OvershootInterpolator
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.animateColor
@@ -41,6 +43,10 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.*
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.math.PI
 import kotlin.math.atan
@@ -665,6 +671,43 @@ fun HowToMakeDraggableMusicKnob() {
 @Composable
 fun HowToMakeAnimatedSplashScreen() {
     // You need to include Navigation Library.
+    
+    val navController = rememberNavController()
+    NavHost(navController = navController, startDestination = "splash_screen") {
+        composable("splash_screen") {
+            val scale = remember {
+                Animatable(0F)
+            }
+
+            LaunchedEffect(key1 = true) {
+                scale.animateTo(
+                    targetValue = 0.3F,
+                    animationSpec = tween(
+                        durationMillis =  500,
+                        easing = {
+                            OvershootInterpolator(2F).getInterpolation(it)
+                        }
+                    )
+                )
+                delay(3000L)
+                navController.navigate("main_screen")
+            }
+
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier.fillMaxSize()
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.knob),
+                    contentDescription = "Logo"
+                )
+            }
+        }
+
+        composable("main_screen") {
+
+        }
+    }
 }
 
 
