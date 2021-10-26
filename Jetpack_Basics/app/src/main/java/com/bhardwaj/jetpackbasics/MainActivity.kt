@@ -488,7 +488,7 @@ fun HowToMakeAnimatedCircularProgressBar(
     radius: Dp = 50.dp,
     color: Color = Color.Blue,
     strokeWidth: Dp = 8.dp,
-    animationDuration: Int = 1000,
+    animationDuration: Int = 1800,
     animationDelay: Int = 0
 ) {
     var animationPlayed by remember {
@@ -527,7 +527,7 @@ fun HowToMakeAnimatedCircularProgressBar(
         }
         Text(
             text = (currentPercentage.value * number).toInt().toString(),
-            color = Color.Black,
+            color = color,
             fontSize = 28.sp,
             fontWeight = FontWeight.Bold
         )
