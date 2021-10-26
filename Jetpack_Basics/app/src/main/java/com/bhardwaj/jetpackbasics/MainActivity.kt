@@ -671,7 +671,7 @@ fun HowToMakeDraggableMusicKnob() {
 @Composable
 fun HowToMakeAnimatedSplashScreen() {
     // You need to include Navigation Library.
-    
+
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "splash_screen") {
         composable("splash_screen") {
@@ -683,7 +683,7 @@ fun HowToMakeAnimatedSplashScreen() {
                 scale.animateTo(
                     targetValue = 0.3F,
                     animationSpec = tween(
-                        durationMillis =  500,
+                        durationMillis = 500,
                         easing = {
                             OvershootInterpolator(2F).getInterpolation(it)
                         }
@@ -705,7 +705,12 @@ fun HowToMakeAnimatedSplashScreen() {
         }
 
         composable("main_screen") {
-
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(text = "Main Screen", color = Color.White)
+            }
         }
     }
 }
