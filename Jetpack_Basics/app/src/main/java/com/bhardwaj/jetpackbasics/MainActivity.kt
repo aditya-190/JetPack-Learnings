@@ -42,7 +42,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            HowToMakeAnimatedCircularProgressBar(percentage = 0.7f, number = 100)
         }
     }
 }
@@ -534,6 +533,13 @@ fun HowToMakeAnimatedCircularProgressBar(
     }
 }
 
+@Suppress("unused")
+@Composable
+fun HowToMakeDraggableMusicKnob(
+
+) {
+    
+}
 
 
 
