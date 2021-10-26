@@ -435,9 +435,9 @@ fun UseOfSimpleAnimation() {
     val size1 by animateDpAsState(
         targetValue = sizeState,
         tween(
-            durationMillis = 3000,
+            durationMillis = 500,
             delayMillis = 300,
-            easing = FastOutLinearInEasing
+            easing = FastOutSlowInEasing
         )
     )
 
