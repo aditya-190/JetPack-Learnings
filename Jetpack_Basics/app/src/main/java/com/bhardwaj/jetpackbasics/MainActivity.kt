@@ -510,7 +510,7 @@ fun HowToMakeAnimatedCircularProgressBar(
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
-            .size(radius * 2f)
+            .fillMaxSize()
             .padding(16.dp)
             .border(1.dp, Color.Black, RectangleShape)
     ) {
