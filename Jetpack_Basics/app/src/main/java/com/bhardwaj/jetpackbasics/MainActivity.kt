@@ -17,11 +17,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.*
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.pointerInteropFilter
 import androidx.compose.ui.layout.ContentScale
@@ -46,12 +45,15 @@ import kotlinx.coroutines.launch
 import kotlin.math.PI
 import kotlin.math.atan
 import kotlin.math.atan2
+import kotlin.math.roundToInt
 import kotlin.random.Random
 
 class MainActivity : ComponentActivity() {
+    @ExperimentalComposeUiApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            HowToMakeDraggableMusicKnob()
         }
     }
 }
@@ -561,7 +563,8 @@ fun VolumeBar(
                 drawRoundRect(
                     color = if (i in 0..activeBars) Color.Green else Color.DarkGray,
                     topLeft = Offset(i * barWidth * 2F + barWidth / 2F, 0F),
-                    size = 
+                    size = Size(barWidth, constraints.maxHeight.toFloat()),
+                    cornerRadius = CornerRadius(0F)
                 )
             }
         }
@@ -569,9 +572,8 @@ fun VolumeBar(
 }
 
 @ExperimentalComposeUiApi
-@Suppress("unused")
 @Composable
-fun HowToMakeDraggableMusicKnob(
+fun MusicKnob(
     modifier: Modifier = Modifier,
     limitingAngle: Float = 25F,
     onValueChange: (Float) -> Unit
@@ -618,6 +620,45 @@ fun HowToMakeDraggableMusicKnob(
             }
             .rotate(rotation)
     )
+}
+
+@ExperimentalComposeUiApi
+@Suppress("unused")
+@Composable
+fun HowToMakeDraggableMusicKnob() {
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xFF101010))
+    ) {
+        Row(
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .border(1.dp, Color.Green, RoundedCornerShape(10.dp))
+                .padding(30.dp)
+        ) {
+            var volume by remember { mutableStateOf(0F) }
+            val barCount = 20
+
+            MusicKnob(
+                modifier = Modifier.size(100.dp)
+            ) {
+                volume = it
+            }
+
+            Spacer(modifier = Modifier.width(20.dp))
+
+            VolumeBar(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(30.dp),
+                activeBars = (barCount * volume).roundToInt(),
+                barCount = barCount
+            )
+        }
+    }
 }
 
 
