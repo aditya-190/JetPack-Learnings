@@ -512,7 +512,7 @@ fun HowToMakeAnimatedCircularProgressBar(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
-            .border(5.dp, Color.Black, RectangleShape)
+            .border(5.dp, Color.Black, RoundedCornerShape(16.dp))
     ) {
         Canvas(
             modifier = Modifier.size(radius * 2f)
