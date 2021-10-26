@@ -451,7 +451,7 @@ fun UseOfSimpleAnimation() {
     val size3 by animateDpAsState(
         targetValue = sizeState,
         keyframes {
-            durationMillis = 5000
+            durationMillis = 500
             sizeState at 0 with LinearEasing
             sizeState * 1.5f at 1000 with FastOutLinearInEasing
             sizeState * 2f at 5000 with LinearEasing
@@ -470,7 +470,7 @@ fun UseOfSimpleAnimation() {
 
     Box(
         modifier = Modifier
-            .size(size1)
+            .size(size2)
             .background(color),
         contentAlignment = Alignment.Center
     ) {
