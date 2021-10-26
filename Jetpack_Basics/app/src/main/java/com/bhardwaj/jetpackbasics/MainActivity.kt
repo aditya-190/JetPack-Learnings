@@ -1,6 +1,7 @@
 package com.bhardwaj.jetpackbasics
 
 import android.os.Bundle
+import android.view.MotionEvent
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.animateColor
@@ -13,7 +14,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
@@ -39,6 +42,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.*
 import kotlinx.coroutines.launch
+import kotlin.math.PI
+import kotlin.math.atan
+import kotlin.math.atan2
 import kotlin.random.Random
 
 class MainActivity : ComponentActivity() {
@@ -536,6 +542,17 @@ fun HowToMakeAnimatedCircularProgressBar(
     }
 }
 
+
+@Composable
+fun VolumeBar(
+  modifier: Modifier = Modifier,
+  activeBars: Int = 0,
+  barCount: Int = 10
+) {
+
+}
+
+@ExperimentalComposeUiApi
 @Suppress("unused")
 @Composable
 fun HowToMakeDraggableMusicKnob(
@@ -562,7 +579,28 @@ fun HowToMakeDraggableMusicKnob(
             .pointerInteropFilter { event ->
                 touchX = event.x
                 touchY = event.y
+
+                val angle = -atan2(centerX - touchX, centerY - touchY) * (180 / PI).toFloat()
+
+                when (event.action) {
+                    MotionEvent.ACTION_DOWN, MotionEvent.ACTION_MOVE -> {
+                        if (angle !in -limitingAngle..limitingAngle) {
+                            val fixedAngle = if (angle in -180F..-limitingAngle) {
+                                360F + angle
+                            } else {
+                                angle
+                            }
+                            rotation = fixedAngle
+
+                            val percent = (fixedAngle - limitingAngle) / (360F - 2 * limitingAngle)
+                            onValueChange(percent)
+                            true
+                        } else false
+                    }
+                    else -> false
+                }
             }
+            .rotate(rotation)
     )
 }
 
