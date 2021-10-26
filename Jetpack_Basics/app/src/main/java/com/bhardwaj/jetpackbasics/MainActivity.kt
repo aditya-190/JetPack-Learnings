@@ -451,17 +451,17 @@ fun UseOfSimpleAnimation() {
     val size3 by animateDpAsState(
         targetValue = sizeState,
         keyframes {
-            durationMillis = 500
-            sizeState at 0 with LinearEasing
-            sizeState * 1.5f at 1000 with FastOutLinearInEasing
-            sizeState * 2f at 5000 with LinearEasing
+            durationMillis = 1000
+            sizeState at 0 with LinearOutSlowInEasing
+            sizeState * 1.5f at 1000 with FastOutSlowInEasing
+            sizeState * 2f at 5000 with FastOutLinearInEasing
         }
     )
 
     val infiniteTransition = rememberInfiniteTransition()
     val color by infiniteTransition.animateColor(
         initialValue = Color.Red,
-        targetValue = Color.he,
+        targetValue = Color.Cyan,
         animationSpec = infiniteRepeatable(
             tween(durationMillis = 2000),
             repeatMode = RepeatMode.Reverse
