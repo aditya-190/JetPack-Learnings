@@ -1,6 +1,5 @@
 package com.bhardwaj.jetpackbasics
 
-import android.graphics.drawable.Animatable
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.animation.OvershootInterpolator
@@ -50,17 +49,14 @@ import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.math.PI
-import kotlin.math.atan
 import kotlin.math.atan2
 import kotlin.math.roundToInt
 import kotlin.random.Random
 
 class MainActivity : ComponentActivity() {
-    @ExperimentalComposeUiApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            HowToMakeAnimatedSplashScreen()
         }
     }
 }
@@ -673,9 +669,11 @@ fun HowToMakeDraggableMusicKnob() {
 fun HowToMakeAnimatedSplashScreen() {
     // You need to include Navigation Library.
 
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .background(Color(0xFF202020))) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xFF202020))
+    ) {
         val navController = rememberNavController()
         NavHost(navController = navController, startDestination = "splash_screen") {
             composable("splash_screen") {
