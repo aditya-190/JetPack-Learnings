@@ -673,45 +673,49 @@ fun HowToMakeDraggableMusicKnob() {
 fun HowToMakeAnimatedSplashScreen() {
     // You need to include Navigation Library.
 
-    val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = "splash_screen") {
-        composable("splash_screen") {
-            val scale = remember {
-                Animatable(0F)
-            }
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .background(Color(0xFF202020))) {
+        val navController = rememberNavController()
+        NavHost(navController = navController, startDestination = "splash_screen") {
+            composable("splash_screen") {
+                val scale = remember {
+                    Animatable(0F)
+                }
 
-            LaunchedEffect(key1 = true) {
-                scale.animateTo(
-                    targetValue = 0.3F,
-                    animationSpec = tween(
-                        durationMillis = 500,
-                        easing = {
-                            OvershootInterpolator(2F).getInterpolation(it)
-                        }
+                LaunchedEffect(key1 = true) {
+                    scale.animateTo(
+                        targetValue = 0.3F,
+                        animationSpec = tween(
+                            durationMillis = 500,
+                            easing = {
+                                OvershootInterpolator(2F).getInterpolation(it)
+                            }
+                        )
                     )
-                )
-                delay(3000L)
-                navController.navigate("main_screen")
+                    delay(3000L)
+                    navController.navigate("main_screen")
+                }
+
+                Box(
+                    contentAlignment = Alignment.Center,
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.knob),
+                        contentDescription = "Logo",
+                        modifier = Modifier.scale(scale.value)
+                    )
+                }
             }
 
-            Box(
-                contentAlignment = Alignment.Center,
-                modifier = Modifier.fillMaxSize()
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.knob),
-                    contentDescription = "Logo",
-                    modifier = Modifier.scale(scale.value)
-                )
-            }
-        }
-
-        composable("main_screen") {
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(text = "Main Screen", color = Color.White)
+            composable("main_screen") {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(text = "Main Screen", color = Color.White)
+                }
             }
         }
     }
