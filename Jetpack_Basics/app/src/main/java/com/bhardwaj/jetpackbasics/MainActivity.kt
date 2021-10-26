@@ -56,6 +56,7 @@ import kotlin.math.roundToInt
 import kotlin.random.Random
 
 class MainActivity : ComponentActivity() {
+    @ExperimentalMaterialApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
