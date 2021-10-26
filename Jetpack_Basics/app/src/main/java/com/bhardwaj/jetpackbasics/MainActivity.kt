@@ -727,6 +727,11 @@ fun HowToMakeAnimatedSplashScreen() {
 @Suppress("unused")
 @Composable
 fun UseOfMultiSelectLazyColumn() {
+    data class MultiSelectItem(
+        val title: String,
+        val isSelected: Boolean
+    )
+
     var items by remember {
         mutableStateOf(
             (1..20).map {
@@ -770,11 +775,6 @@ fun UseOfMultiSelectLazyColumn() {
         }
     }
 }
-
-data class MultiSelectItem(
-    val title: String,
-    val isSelected: Boolean
-)
 
 
 
