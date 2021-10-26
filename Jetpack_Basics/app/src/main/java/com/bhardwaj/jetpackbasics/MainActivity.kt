@@ -685,7 +685,7 @@ fun HowToMakeAnimatedSplashScreen() {
 
                 LaunchedEffect(key1 = true) {
                     scale.animateTo(
-                        targetValue = 0.3F,
+                        targetValue = 0.9F,
                         animationSpec = tween(
                             durationMillis = 500,
                             easing = {
