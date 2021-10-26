@@ -444,7 +444,7 @@ fun UseOfSimpleAnimation() {
     val size2 by animateDpAsState(
         targetValue = sizeState,
         spring(
-            Spring.DampingRatioLowBouncy
+            Spring.DampingRatioHighBouncy
         )
     )
 
@@ -461,7 +461,7 @@ fun UseOfSimpleAnimation() {
     val infiniteTransition = rememberInfiniteTransition()
     val color by infiniteTransition.animateColor(
         initialValue = Color.Red,
-        targetValue = Color.Green,
+        targetValue = Color.he,
         animationSpec = infiniteRepeatable(
             tween(durationMillis = 2000),
             repeatMode = RepeatMode.Reverse
@@ -470,7 +470,7 @@ fun UseOfSimpleAnimation() {
 
     Box(
         modifier = Modifier
-            .size(size2)
+            .size(size3)
             .background(color),
         contentAlignment = Alignment.Center
     ) {
