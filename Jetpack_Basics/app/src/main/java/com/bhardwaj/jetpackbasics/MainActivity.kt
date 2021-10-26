@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
@@ -699,7 +700,8 @@ fun HowToMakeAnimatedSplashScreen() {
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.knob),
-                    contentDescription = "Logo"
+                    contentDescription = "Logo",
+                    modifier = Modifier.scale(scale.value)
                 )
             }
         }
