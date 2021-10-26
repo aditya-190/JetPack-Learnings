@@ -16,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.layout.ContentScale
@@ -511,7 +512,7 @@ fun HowToMakeAnimatedCircularProgressBar(
         modifier = Modifier
             .size(radius * 2f)
             .padding(16.dp)
-            .fillMaxSize()
+            .border(1.dp, Color.Black, RectangleShape)
     ) {
         Canvas(
             modifier = Modifier.size(radius * 2f)
