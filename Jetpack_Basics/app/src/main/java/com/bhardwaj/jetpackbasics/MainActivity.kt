@@ -44,7 +44,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            UseOfSimpleAnimation()
+            HowToMakeAnimatedCircularProgressBar(percentage = 0.7f, number = 100)
         }
     }
 }
@@ -470,7 +470,7 @@ fun UseOfSimpleAnimation() {
 
     Box(
         modifier = Modifier
-            .size(size3)
+            .size(size1)
             .background(color),
         contentAlignment = Alignment.Center
     ) {
@@ -512,6 +512,7 @@ fun HowToMakeAnimatedCircularProgressBar(
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier.size(radius * 2f)
+            .padding(16.dp)
     ) {
         Canvas(
             modifier = Modifier.size(radius * 2f)
