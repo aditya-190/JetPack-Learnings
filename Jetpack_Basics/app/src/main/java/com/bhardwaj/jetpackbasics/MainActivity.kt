@@ -57,6 +57,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            UseOfMultiSelectLazyColumn()
         }
     }
 }
@@ -718,6 +719,18 @@ fun HowToMakeAnimatedSplashScreen() {
         }
     }
 }
+
+@Suppress("unused")
+@Composable
+fun UseOfMultiSelectLazyColumn() {
+
+}
+
+data class MultiSelectItem(
+    val title: String,
+    val isSelected: Boolean
+)
+
 
 
 
