@@ -53,7 +53,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            HowToMakeDraggableMusicKnob()
+            HowToMakeAnimatedSplashScreen()
         }
     }
 }
@@ -659,6 +659,12 @@ fun HowToMakeDraggableMusicKnob() {
             )
         }
     }
+}
+
+@Suppress("unused")
+@Composable
+fun HowToMakeAnimatedSplashScreen() {
+    // You need to include Navigation Library.
 }
 
 
