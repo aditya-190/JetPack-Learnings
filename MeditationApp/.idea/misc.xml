@@ -8,6 +8,9 @@
         <entry key="app/src/main/res/drawable/ic_home.xml" value="0.1259259259259259" />
         <entry key="app/src/main/res/drawable/ic_moon.xml" value="0.1259259259259259" />
         <entry key="app/src/main/res/drawable/ic_music.xml" value="0.1259259259259259" />
+        <entry key="app/src/main/res/drawable/ic_play.xml" value="0.1259259259259259" />
+        <entry key="app/src/main/res/drawable/ic_profile.xml" value="0.1259259259259259" />
+        <entry key="app/src/main/res/drawable/ic_search.xml" value="0.1259259259259259" />
       </map>
     </option>
   </component>
