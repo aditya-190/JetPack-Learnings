@@ -112,10 +112,11 @@ fun CurrentMeditation(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
-                .fillMaxWidth()
+                .padding(16.dp)
                 .clip(RoundedCornerShape(16.dp))
                 .background(LightRed)
-                .padding(16.dp)
+                .padding(horizontal = 16.dp, vertical = 20.dp)
+                .fillMaxWidth()
 
         ) {
             Column(
@@ -127,7 +128,8 @@ fun CurrentMeditation(
                 )
                 Text(
                     text = "$category : $duration",
-                    style = MaterialTheme.typography.body2
+                    style = MaterialTheme.typography.body2,
+                    color = TextWhite
                 )
             }
             Icon(
@@ -137,7 +139,7 @@ fun CurrentMeditation(
                 modifier = Modifier
                     .clip(CircleShape)
                     .background(ButtonBlue)
-                    .padding(12.dp)
+                    .padding(10.dp)
                     .size(16.dp)
             )
         }
