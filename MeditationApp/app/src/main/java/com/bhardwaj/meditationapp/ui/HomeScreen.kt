@@ -112,8 +112,8 @@ fun CurrentMeditation(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .fillMaxWidth()
-                .background(LightRed)
                 .clip(RoundedCornerShape(16.dp))
+                .background(LightRed)
                 .padding(16.dp)
 
         ) {
@@ -134,8 +134,8 @@ fun CurrentMeditation(
                 contentDescription = "Play Icon",
                 tint = Color.White,
                 modifier = Modifier
-                    .background(ButtonBlue)
                     .clip(CircleShape)
+                    .background(ButtonBlue)
                     .padding(8.dp)
                     .size(24.dp)
             )
