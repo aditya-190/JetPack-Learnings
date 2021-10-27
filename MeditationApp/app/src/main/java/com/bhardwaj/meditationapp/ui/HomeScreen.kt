@@ -35,6 +35,7 @@ fun HomeScreen() {
             HeadingSection()
             SubHeadingChips()
             CurrentMeditation()
+            FeatureSection()
         }
     }
 }
@@ -112,11 +113,10 @@ fun CurrentMeditation(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
-                .padding(16.dp)
                 .clip(RoundedCornerShape(16.dp))
                 .background(LightRed)
-                .padding(horizontal = 16.dp, vertical = 20.dp)
                 .fillMaxWidth()
+                .padding(16.dp)
 
         ) {
             Column(
@@ -144,4 +144,8 @@ fun CurrentMeditation(
             )
         }
     }
+}
+
+@Composable
+fun FeatureSection() {
 }
