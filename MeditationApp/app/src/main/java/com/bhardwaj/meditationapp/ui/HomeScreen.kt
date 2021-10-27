@@ -36,6 +36,7 @@ fun HomeScreen() {
         ) {
             HeadingSection()
             SubHeadingChips()
+            CurrentMeditation()
         }
     }
 }
@@ -96,4 +97,12 @@ fun SubHeadingChips(
             }
         }
     }
+}
+
+@Composable
+fun CurrentMeditation(
+    title: String = "Daily Thought",
+    category: String = "Meditation",
+    duration: String = "3-10 min"
+) {
 }
