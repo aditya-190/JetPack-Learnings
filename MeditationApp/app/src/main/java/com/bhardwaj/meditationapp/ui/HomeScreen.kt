@@ -16,10 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.bhardwaj.meditationapp.R
-import com.bhardwaj.meditationapp.ui.theme.ButtonBlue
-import com.bhardwaj.meditationapp.ui.theme.DarkerButtonBlue
-import com.bhardwaj.meditationapp.ui.theme.DeepBlue
-import com.bhardwaj.meditationapp.ui.theme.TextWhite
+import com.bhardwaj.meditationapp.ui.theme.*
 
 @Composable
 fun HomeScreen() {
@@ -105,4 +102,40 @@ fun CurrentMeditation(
     category: String = "Meditation",
     duration: String = "3-10 min"
 ) {
+    Box(modifier = Modifier
+        .fillMaxWidth()
+        .padding(16.dp)
+    ) {
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(LightRed)
+                .padding(16.dp)
+
+        ) {
+            Column(
+                verticalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.h2
+                )
+                Text(
+                    text = "$category : $duration",
+                    style = MaterialTheme.typography.body1
+                )
+            }
+            Icon(
+                painter = painterResource(id = R.drawable.ic_play),
+                contentDescription = "Play Icon",
+                tint = Color.White,
+                modifier = Modifier
+                    .background(ButtonBlue)
+                    .padding(8.dp)
+                    .size(24.dp)
+            )
+        }
+    }
 }
