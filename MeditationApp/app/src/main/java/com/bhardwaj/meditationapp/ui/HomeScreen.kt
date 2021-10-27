@@ -54,11 +54,11 @@ fun HeadingSection(name: String = "Aditya") {
         ) {
             Text(
                 text = "Good Morning, $name",
-                style = MaterialTheme.typography.h2
+                style = MaterialTheme.typography.body1
             )
             Text(
                 text = "We wish you have a good day?",
-                style = MaterialTheme.typography.body1
+                style = MaterialTheme.typography.body2
             )
         }
         Icon(
@@ -103,9 +103,10 @@ fun CurrentMeditation(
     category: String = "Meditation",
     duration: String = "3-10 min"
 ) {
-    Box(modifier = Modifier
-        .fillMaxWidth()
-        .padding(16.dp)
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)
     ) {
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -136,8 +137,8 @@ fun CurrentMeditation(
                 modifier = Modifier
                     .clip(CircleShape)
                     .background(ButtonBlue)
-                    .padding(8.dp)
-                    .size(24.dp)
+                    .padding(12.dp)
+                    .size(16.dp)
             )
         }
     }
