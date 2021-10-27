@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -134,6 +135,7 @@ fun CurrentMeditation(
                 tint = Color.White,
                 modifier = Modifier
                     .background(ButtonBlue)
+                    .clip(CircleShape)
                     .padding(8.dp)
                     .size(24.dp)
             )
