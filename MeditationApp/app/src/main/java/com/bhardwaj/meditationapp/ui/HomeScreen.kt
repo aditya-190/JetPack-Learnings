@@ -112,6 +112,7 @@ fun CurrentMeditation(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(LightRed)
+                .clip(RoundedCornerShape(16.dp))
                 .padding(16.dp)
 
         ) {
@@ -120,11 +121,11 @@ fun CurrentMeditation(
             ) {
                 Text(
                     text = title,
-                    style = MaterialTheme.typography.h2
+                    style = MaterialTheme.typography.body1
                 )
                 Text(
                     text = "$category : $duration",
-                    style = MaterialTheme.typography.body1
+                    style = MaterialTheme.typography.body2
                 )
             }
             Icon(
