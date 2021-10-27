@@ -14,25 +14,12 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MeditationAppTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
-                }
-            }
+            MeditationUI()
         }
     }
 }
 
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
+fun MeditationUI() {
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    MeditationAppTheme {
-        Greeting("Android")
-    }
 }
