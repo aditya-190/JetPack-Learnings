@@ -146,6 +146,6 @@ fun CurrentMeditation() {
 }
 
 @Composable
-fun FeatureSection(
-) {
+fun FeatureSection(features: List<Feature>) {
+    
 }
