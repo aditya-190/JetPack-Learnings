@@ -51,6 +51,7 @@ class MainActivity : ComponentActivity() {
                     SubHeadingChips()
                     CurrentMeditation()
                     FeatureSection()
+                    BottomMenu()
                 }
             }
         }
@@ -319,6 +320,63 @@ class MainActivity : ComponentActivity() {
         initialSelectedItemIndex: Int = 0
     ) {
         var selectedItemIndex by remember { mutableStateOf(initialSelectedItemIndex) }
+        Row(
+            horizontalArrangement = Arrangement.SpaceAround,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = modifier
+                .fillMaxWidth()
+                .background(DeepBlue)
+                .padding(16.dp)
+        ) {
+            items.forEachIndexed { index, item ->
+                BottomMenuItem(
+                    item = item,
+                    isSelected = (index == selectedItemIndex),
+                    activeHighlightColor = activeHighlightColor,
+                    activeTextColor = activeTextColor,
+                    inActiveTextColor = inActiveTextColor
+                ) {
+                    selectedItemIndex = index
+                }
+            }
+        }
+    }
+
+    @Composable
+    fun BottomMenuItem(
+        item: BottomMenuContent,
+        isSelected: Boolean = false,
+        activeHighlightColor: Color = ButtonBlue,
+        activeTextColor: Color = Color.White,
+        inActiveTextColor: Color = AquaBlue,
+        onItemClick: () -> Unit
+    ) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+            modifier = Modifier.clickable {
+                onItemClick()
+            }
+        ) {
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .clip(RoundedCornerShape(12.dp))
+                    .background(if (isSelected) activeHighlightColor else Color.Transparent)
+                    .padding(12.dp)
+            ) {
+                Icon(
+                    painter = painterResource(id = item.iconId),
+                    contentDescription = item.title,
+                    tint = if (isSelected) activeTextColor else inActiveTextColor,
+                    modifier = Modifier.size(20.dp)
+                )
+            }
+            Text(
+                text = item.title,
+                color = if (isSelected) activeTextColor else inActiveTextColor,
+            )
+        }
     }
 }
 
