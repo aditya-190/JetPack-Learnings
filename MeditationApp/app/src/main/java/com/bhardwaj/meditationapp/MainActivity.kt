@@ -311,7 +311,12 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     fun BottomMenu(
-        items: List<BottomMenuContent>
+        items: List<BottomMenuContent>,
+        modifier: Modifier = Modifier,
+        activeHighlightColor: Color = ButtonBlue,
+        activeTextColor: Color = Color.White,
+        inActiveTextColor: Color = AquaBlue,
+        initialSelectedItemIndex: Int = 0
     ) {
 
     }
