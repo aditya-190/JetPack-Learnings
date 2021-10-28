@@ -43,8 +43,7 @@ class MainActivity : ComponentActivity() {
             ) {
                 Column(
                     modifier = Modifier
-                        .fillMaxSize()
-                        .align(Alignment.BottomCenter),
+                        .fillMaxSize(),
                     horizontalAlignment = Alignment.Start,
                     verticalArrangement = Arrangement.Top
                 ) {
@@ -52,8 +51,8 @@ class MainActivity : ComponentActivity() {
                     SubHeadingChips()
                     CurrentMeditation()
                     FeatureSection()
-                    BottomMenu()
                 }
+                BottomMenu(modifier = Modifier.align(Alignment.BottomCenter))
             }
         }
     }
@@ -73,45 +72,48 @@ class MainActivity : ComponentActivity() {
             ) {
                 Text(
                     text = "Good Morning, $name",
-                    style = MaterialTheme.typography.body1,
-                    color = TextWhite
+                    style = MaterialTheme.typography.subtitle1,
+                    color = TextWhite,
+                    fontFamily = gothic
                 )
                 Text(
                     text = "We wish you have a good day?",
-                    style = MaterialTheme.typography.body2,
-                    color = TextWhite
+                    style = MaterialTheme.typography.subtitle2,
+                    color = TextWhite,
+                    fontFamily = gothic
                 )
             }
             Icon(
                 painter = painterResource(id = R.drawable.ic_search),
                 contentDescription = "Search Icon",
                 tint = Color.White,
-                modifier = Modifier.size(24.dp)
+                modifier = Modifier.size(16.dp)
             )
         }
     }
 
     @Composable
     fun SubHeadingChips(
-        chips: List<String> = listOf("Sweet", "Sleep", "Depression", "Insomia")
+        chips: List<String> = listOf("Sweet", "Sleep", "Depression", "Insomia", "Default", "Aditya")
     ) {
         var selectedChipIndex by remember { mutableStateOf(0) }
         LazyRow {
             items(chips.size) {
                 Box(
                     modifier = Modifier
-                        .padding(start = 16.dp, top = 16.dp, bottom = 16.dp)
+                        .padding(start = 16.dp, top = 8.dp, bottom = 8.dp)
                         .clickable {
                             selectedChipIndex = it
                         }
                         .clip(RoundedCornerShape(12.dp))
                         .background(if (selectedChipIndex == it) ButtonBlue else DarkerButtonBlue)
-                        .padding(16.dp),
+                        .padding(12.dp),
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
                         text = chips[it],
-                        color = TextWhite
+                        color = TextWhite,
+                        fontFamily = gothic
                     )
                 }
             }
@@ -129,10 +131,10 @@ class MainActivity : ComponentActivity() {
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
-                    .clip(RoundedCornerShape(16.dp))
+                    .clip(RoundedCornerShape(12.dp))
                     .background(LightRed)
                     .fillMaxWidth()
-                    .padding(16.dp)
+                    .padding(20.dp)
 
             ) {
                 Column(
@@ -141,12 +143,14 @@ class MainActivity : ComponentActivity() {
                     Text(
                         text = "Daily Thought",
                         style = MaterialTheme.typography.body1,
-                        color = TextWhite
+                        color = TextWhite,
+                        fontFamily = gothic
                     )
                     Text(
                         text = "Meditation • 3-10 min",
                         style = MaterialTheme.typography.body2,
-                        color = TextWhite
+                        color = TextWhite,
+                        fontFamily = gothic
                     )
                 }
                 Icon(
@@ -205,7 +209,8 @@ class MainActivity : ComponentActivity() {
                 text = "Featured",
                 style = MaterialTheme.typography.body1,
                 modifier = Modifier.padding(16.dp),
-                color = TextWhite
+                color = TextWhite,
+                fontFamily = gothic
             )
 
             LazyVerticalGrid(
@@ -278,6 +283,9 @@ class MainActivity : ComponentActivity() {
                             Text(
                                 text = features[it].title,
                                 style = MaterialTheme.typography.body2,
+                                color = TextWhite,
+                                fontWeight = FontWeight.Bold,
+                                fontFamily = gothic,
                                 lineHeight = 26.sp,
                                 modifier = Modifier
                                     .align(Alignment.TopStart)
@@ -295,9 +303,9 @@ class MainActivity : ComponentActivity() {
                                 color = TextWhite,
                                 fontSize = 14.sp,
                                 fontWeight = FontWeight.Bold,
+                                fontFamily = gothic,
                                 modifier = Modifier
                                     .clickable {
-
                                     }
                                     .align(Alignment.BottomEnd)
                                     .clip(RoundedCornerShape(12.dp))
@@ -333,56 +341,38 @@ class MainActivity : ComponentActivity() {
             modifier = modifier
                 .fillMaxWidth()
                 .background(DeepBlue)
-                .padding(16.dp)
+                .padding(8.dp)
         ) {
             items.forEachIndexed { index, item ->
-                BottomMenuItem(
-                    item = item,
-                    isSelected = (index == selectedItemIndex),
-                    activeHighlightColor = activeHighlightColor,
-                    activeTextColor = activeTextColor,
-                    inActiveTextColor = inActiveTextColor
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center,
+                    modifier = Modifier.clickable {
+                        selectedItemIndex = index
+                    }
                 ) {
-                    selectedItemIndex = index
+                    Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(12.dp))
+                            .background(if ((index == selectedItemIndex)) activeHighlightColor else Color.Transparent)
+                            .padding(10.dp)
+                    ) {
+                        Icon(
+                            painter = painterResource(id = item.iconId),
+                            contentDescription = item.title,
+                            tint = if ((index == selectedItemIndex)) activeTextColor else inActiveTextColor,
+                            modifier = Modifier.size(16.dp)
+                        )
+                    }
+                    Text(
+                        text = item.title,
+                        color = if ((index == selectedItemIndex)) activeTextColor else inActiveTextColor,
+                        fontSize = 12.sp,
+                        fontFamily = gothic
+                    )
                 }
             }
-        }
-    }
-
-    @Composable
-    fun BottomMenuItem(
-        item: BottomMenuContent,
-        isSelected: Boolean = false,
-        activeHighlightColor: Color = ButtonBlue,
-        activeTextColor: Color = Color.White,
-        inActiveTextColor: Color = AquaBlue,
-        onItemClick: () -> Unit
-    ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
-            modifier = Modifier.clickable {
-                onItemClick()
-            }
-        ) {
-            Box(
-                contentAlignment = Alignment.Center,
-                modifier = Modifier
-                    .clip(RoundedCornerShape(12.dp))
-                    .background(if (isSelected) activeHighlightColor else Color.Transparent)
-                    .padding(12.dp)
-            ) {
-                Icon(
-                    painter = painterResource(id = item.iconId),
-                    contentDescription = item.title,
-                    tint = if (isSelected) activeTextColor else inActiveTextColor,
-                    modifier = Modifier.size(20.dp)
-                )
-            }
-            Text(
-                text = item.title,
-                color = if (isSelected) activeTextColor else inActiveTextColor,
-            )
         }
     }
 }
