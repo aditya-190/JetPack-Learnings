@@ -164,13 +164,13 @@ fun FeatureSection(
             contentPadding = PaddingValues(start = 7.5.dp, bottom = 100.dp, end = 7.5.dp),
             modifier = Modifier.fillMaxHeight()
         ) {
-            items(features.size) { feature ->
+            items(features.size) {
                 BoxWithConstraints(
                     modifier = Modifier
                         .padding(7.5.dp)
                         .aspectRatio(1f)
                         .clip(RoundedCornerShape(10.dp))
-                        .background(feature.)
+                        .background(Feature.darkColor)
                 ) {
 
                 }
