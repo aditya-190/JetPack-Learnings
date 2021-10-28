@@ -200,7 +200,7 @@ class MainActivity : ComponentActivity() {
     ) {
         Column(modifier = Modifier.fillMaxWidth()) {
             Text(
-                text = "Features",
+                text = "Featured",
                 style = MaterialTheme.typography.body1,
                 modifier = Modifier.padding(16.dp),
                 color = TextWhite
@@ -318,7 +318,7 @@ class MainActivity : ComponentActivity() {
         inActiveTextColor: Color = AquaBlue,
         initialSelectedItemIndex: Int = 0
     ) {
-
+        var selectedItemIndex by remember { mutableStateOf(initialSelectedItemIndex) }
     }
 }
 
