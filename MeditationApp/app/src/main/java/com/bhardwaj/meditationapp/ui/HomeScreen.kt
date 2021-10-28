@@ -45,6 +45,7 @@ fun HomeScreen() {
             HeadingSection()
             SubHeadingChips()
             CurrentMeditation()
+            FeatureSection()
         }
     }
 }
@@ -157,7 +158,39 @@ fun CurrentMeditation() {
 @ExperimentalFoundationApi
 @Composable
 fun FeatureSection(
-    features: List<Feature>
+    features: List<Feature> = listOf(
+        Feature(
+            title = "Sleep Meditation",
+            R.drawable.ic_headphone,
+            BlueViolet1,
+            BlueViolet2,
+            BlueViolet3
+        ),
+
+        Feature(
+            title = "Tips of Sleeping",
+            R.drawable.ic_videocam,
+            LightGreen1,
+            LightGreen2,
+            LightGreen3
+        ),
+
+        Feature(
+            title = "Night Island",
+            R.drawable.ic_videocam,
+            LightGreen1,
+            LightGreen2,
+            LightGreen3
+        ),
+
+        Feature(
+            title = "Tips of Sleeping",
+            R.drawable.ic_videocam,
+            LightGreen1,
+            LightGreen2,
+            LightGreen3
+        ),
+    )
 ) {
     Column(modifier = Modifier.fillMaxWidth()) {
         Text(
@@ -171,13 +204,13 @@ fun FeatureSection(
             contentPadding = PaddingValues(start = 7.5.dp, bottom = 100.dp, end = 7.5.dp),
             modifier = Modifier.fillMaxHeight()
         ) {
-            items(features.size) { i ->
+            items(features.size) {
                 BoxWithConstraints(
                     modifier = Modifier
                         .padding(7.5.dp)
                         .aspectRatio(1f)
                         .clip(RoundedCornerShape(10.dp))
-                        .background(features[i].darkColor)
+                        .background(features[it].darkColor)
                 ) {
                     val width = constraints.maxWidth
                     val height = constraints.maxHeight
@@ -219,12 +252,12 @@ fun FeatureSection(
                     Canvas(modifier = Modifier.fillMaxSize()) {
                         drawPath(
                             path = mediumColoredPath,
-                            color = features[i].mediumColor
+                            color = features[it].mediumColor
                         )
 
                         drawPath(
                             path = lightColoredPath,
-                            color = features[i].lightColor
+                            color = features[it].lightColor
                         )
                     }
 
@@ -234,7 +267,7 @@ fun FeatureSection(
                             .padding(16.dp)
                     ) {
                         Text(
-                            text = features[i].title,
+                            text = features[it].title,
                             style = MaterialTheme.typography.h2,
                             lineHeight = 26.sp,
                             modifier = Modifier
@@ -242,8 +275,8 @@ fun FeatureSection(
                         )
 
                         Icon(
-                            painter = painterResource(id = features[i].iconId),
-                            contentDescription = features[i].title,
+                            painter = painterResource(id = features[it].iconId),
+                            contentDescription = features[it].title,
                             tint = Color.White,
                             modifier = Modifier.align(Alignment.BottomStart)
                         )
@@ -254,11 +287,13 @@ fun FeatureSection(
                             fontSize = 14.sp,
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier
-                                .clickable{
+                                .clickable {
 
-                            }
+                                }
                                 .align(Alignment.BottomEnd)
-                                .
+                                .clip(RoundedCornerShape(12.dp))
+                                .background(ButtonBlue)
+                                .padding(vertical = 8.dp, horizontal = 16.dp)
                         )
                     }
                 }
