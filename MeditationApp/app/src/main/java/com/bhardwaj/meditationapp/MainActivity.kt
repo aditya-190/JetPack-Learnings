@@ -202,7 +202,8 @@ class MainActivity : ComponentActivity() {
             Text(
                 text = "Features",
                 style = MaterialTheme.typography.body1,
-                modifier = Modifier.padding(16.dp)
+                modifier = Modifier.padding(16.dp),
+                color = TextWhite
             )
 
             LazyVerticalGrid(
