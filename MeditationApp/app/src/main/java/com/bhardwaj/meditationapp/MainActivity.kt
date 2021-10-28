@@ -201,7 +201,7 @@ class MainActivity : ComponentActivity() {
         Column(modifier = Modifier.fillMaxWidth()) {
             Text(
                 text = "Features",
-                style = MaterialTheme.typography.h1,
+                style = MaterialTheme.typography.body1,
                 modifier = Modifier.padding(16.dp)
             )
 
@@ -274,7 +274,7 @@ class MainActivity : ComponentActivity() {
                         ) {
                             Text(
                                 text = features[it].title,
-                                style = MaterialTheme.typography.h2,
+                                style = MaterialTheme.typography.body2,
                                 lineHeight = 26.sp,
                                 modifier = Modifier
                                     .align(Alignment.TopStart)
