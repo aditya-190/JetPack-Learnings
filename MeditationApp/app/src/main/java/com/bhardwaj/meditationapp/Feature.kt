@@ -1,4 +1,4 @@
-package com.bhardwaj.meditationapp.ui
+package com.bhardwaj.meditationapp
 
 import androidx.annotation.DrawableRes
 import androidx.compose.ui.graphics.Color
