@@ -312,8 +312,14 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     fun BottomMenu(
-        items: List<BottomMenuContent>,
         modifier: Modifier = Modifier,
+        items: List<BottomMenuContent> = listOf(
+            BottomMenuContent("Home", R.drawable.ic_home),
+            BottomMenuContent("Meditation", R.drawable.ic_bubble),
+            BottomMenuContent("Sleep", R.drawable.ic_moon),
+            BottomMenuContent("Music", R.drawable.ic_music),
+            BottomMenuContent("Profile", R.drawable.ic_profile)
+        ),
         activeHighlightColor: Color = ButtonBlue,
         activeTextColor: Color = Color.White,
         inActiveTextColor: Color = AquaBlue,
