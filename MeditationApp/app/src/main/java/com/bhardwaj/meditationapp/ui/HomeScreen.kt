@@ -16,12 +16,15 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.bhardwaj.meditationapp.Feature
 import com.bhardwaj.meditationapp.R
 import com.bhardwaj.meditationapp.ui.theme.*
+import kotlin.math.abs
 
 @Composable
 fun HomeScreen() {
@@ -176,10 +179,33 @@ fun FeatureSection(
                     val width = constraints.maxWidth
                     val height = constraints.maxHeight
 
+                    val mediumColoredPoint1 = Offset(0F, height * 0.3F)
+                    val mediumColoredPoint2 = Offset(width * 0.1F, height * 0.35F)
+                    val mediumColoredPoint3 = Offset(width * 0.4F, height * 0.05F)
+                    val mediumColoredPoint4 = Offset(width * 0.75F, height * 0.7F)
+                    val mediumColoredPoint5 = Offset(width * 1.4F, -height.toFloat())
+
+                    val mediumColoredPath = Path().apply {
+                        moveTo(mediumColoredPoint1.x, mediumColoredPoint1.y)
+                        standardQuadFromTo(mediumColoredPoint1, mediumColoredPoint2)
+                        standardQuadFromTo(mediumColoredPoint2, mediumColoredPoint3)
+                        standardQuadFromTo(mediumColoredPoint1, mediumColoredPoint4)
+                        standardQuadFromTo(mediumColoredPoint1, mediumColoredPoint2)
+                        standardQuadFromTo(mediumColoredPoint1, mediumColoredPoint2)
+                    }
                 }
             }
         }
     }
+}
+
+fun Path.standardQuadFromTo(from: Offset, to: Offset) {
+    quadraticBezierTo(
+        from.x,
+        from.y,
+        abs(from.x + to.x) / 2F,
+        abs(from.y + to.y) / 2F
+    )
 }
 
 
