@@ -99,11 +99,7 @@ fun SubHeadingChips(
 }
 
 @Composable
-fun CurrentMeditation(
-    title: String = "Daily Thought",
-    category: String = "Meditation",
-    duration: String = "3-10 min"
-) {
+fun CurrentMeditation() {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -123,11 +119,11 @@ fun CurrentMeditation(
                 verticalArrangement = Arrangement.Center
             ) {
                 Text(
-                    text = title,
+                    text = "Daily Thought",
                     style = MaterialTheme.typography.body1
                 )
                 Text(
-                    text = "$category : $duration",
+                    text = "Meditation 3-10 min",
                     style = MaterialTheme.typography.body2,
                     color = TextWhite
                 )
