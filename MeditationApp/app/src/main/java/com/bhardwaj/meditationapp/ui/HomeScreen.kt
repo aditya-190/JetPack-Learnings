@@ -55,11 +55,13 @@ fun HeadingSection(name: String = "Aditya") {
         ) {
             Text(
                 text = "Good Morning, $name",
-                style = MaterialTheme.typography.body1
+                style = MaterialTheme.typography.body1,
+                color = TextWhite
             )
             Text(
                 text = "We wish you have a good day?",
-                style = MaterialTheme.typography.body2
+                style = MaterialTheme.typography.body2,
+                color = TextWhite
             )
         }
         Icon(
@@ -120,7 +122,8 @@ fun CurrentMeditation() {
             ) {
                 Text(
                     text = "Daily Thought",
-                    style = MaterialTheme.typography.body1
+                    style = MaterialTheme.typography.body1,
+                    color = TextWhite
                 )
                 Text(
                     text = "Meditation • 3-10 min",
