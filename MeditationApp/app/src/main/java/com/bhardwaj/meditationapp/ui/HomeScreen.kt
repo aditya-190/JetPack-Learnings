@@ -1,9 +1,12 @@
 package com.bhardwaj.meditationapp.ui
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
@@ -35,7 +38,6 @@ fun HomeScreen() {
             HeadingSection()
             SubHeadingChips()
             CurrentMeditation()
-            FeatureSection()
         }
     }
 }
@@ -145,7 +147,41 @@ fun CurrentMeditation() {
     }
 }
 
+@ExperimentalFoundationApi
 @Composable
-fun FeatureSection(features: List<Feature>) {
-    
+fun FeatureSection(
+    features: List<Feature>
+) {
+    Column(modifier = Modifier.fillMaxWidth()) {
+        Text(
+            text = "Features",
+            style = MaterialTheme.typography.h1,
+            modifier = Modifier.padding(16.dp)
+        )
+
+        LazyVerticalGrid(
+            cells = GridCells.Fixed(2),
+            contentPadding = PaddingValues(start = 7.5.dp, bottom = 100.dp, end = 7.5.dp),
+            modifier = Modifier.fillMaxHeight()
+        ) {
+            items(features.size) { feature ->
+                BoxWithConstraints(
+                    modifier = Modifier
+                        .padding(7.5.dp)
+                        .aspectRatio(1f)
+                        .clip(RoundedCornerShape(10.dp))
+                        .background(feature.)
+                ) {
+
+                }
+            }
+        }
+    }
 }
+
+
+
+
+
+
+
