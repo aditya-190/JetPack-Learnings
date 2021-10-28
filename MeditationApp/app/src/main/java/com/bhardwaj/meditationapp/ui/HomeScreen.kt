@@ -1,5 +1,6 @@
 package com.bhardwaj.meditationapp.ui
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -24,11 +25,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.bhardwaj.meditationapp.Feature
 import com.bhardwaj.meditationapp.R
 import com.bhardwaj.meditationapp.ui.theme.*
 import kotlin.math.abs
 
+@ExperimentalFoundationApi
 @Composable
 fun HomeScreen() {
     Box(
@@ -177,18 +178,18 @@ fun FeatureSection(
 
         Feature(
             title = "Night Island",
-            R.drawable.ic_videocam,
-            LightGreen1,
-            LightGreen2,
-            LightGreen3
+            R.drawable.ic_headphone,
+            OrangeYellow1,
+            OrangeYellow2,
+            OrangeYellow3
         ),
 
         Feature(
-            title = "Tips of Sleeping",
-            R.drawable.ic_videocam,
-            LightGreen1,
-            LightGreen2,
-            LightGreen3
+            title = "Calming Sounds",
+            R.drawable.ic_headphone,
+            Beige1,
+            Beige2,
+            Beige3
         ),
     )
 ) {
@@ -302,6 +303,14 @@ fun FeatureSection(
     }
 }
 
+@Composable
+fun BottomMenu(
+    items: List<BottomMenuContent>
+) {
+
+}
+
+
 fun Path.standardQuadFromTo(from: Offset, to: Offset) {
     quadraticBezierTo(
         from.x,
@@ -310,6 +319,19 @@ fun Path.standardQuadFromTo(from: Offset, to: Offset) {
         abs(from.y + to.y) / 2F
     )
 }
+
+data class Feature(
+    val title: String,
+    @DrawableRes val iconId: Int,
+    val lightColor: Color,
+    val mediumColor: Color,
+    val darkColor: Color
+)
+
+data class BottomMenuContent(
+    val title: String,
+    @DrawableRes val iconId: Int,
+)
 
 
 
