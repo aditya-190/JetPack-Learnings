@@ -123,7 +123,7 @@ fun CurrentMeditation() {
                     style = MaterialTheme.typography.body1
                 )
                 Text(
-                    text = "Meditation U+2022 3-10 min",
+                    text = "Meditation • 3-10 min",
                     style = MaterialTheme.typography.body2,
                     color = TextWhite
                 )
