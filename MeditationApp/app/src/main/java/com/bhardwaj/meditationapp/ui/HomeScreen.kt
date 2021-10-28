@@ -1,5 +1,6 @@
 package com.bhardwaj.meditationapp.ui
 
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -20,7 +21,9 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.bhardwaj.meditationapp.Feature
 import com.bhardwaj.meditationapp.R
 import com.bhardwaj.meditationapp.ui.theme.*
@@ -189,9 +192,74 @@ fun FeatureSection(
                         moveTo(mediumColoredPoint1.x, mediumColoredPoint1.y)
                         standardQuadFromTo(mediumColoredPoint1, mediumColoredPoint2)
                         standardQuadFromTo(mediumColoredPoint2, mediumColoredPoint3)
-                        standardQuadFromTo(mediumColoredPoint1, mediumColoredPoint4)
-                        standardQuadFromTo(mediumColoredPoint1, mediumColoredPoint2)
-                        standardQuadFromTo(mediumColoredPoint1, mediumColoredPoint2)
+                        standardQuadFromTo(mediumColoredPoint3, mediumColoredPoint4)
+                        standardQuadFromTo(mediumColoredPoint4, mediumColoredPoint5)
+                        lineTo(width.toFloat() + 100F, height.toFloat() + 100F)
+                        lineTo(-100F, height.toFloat() + 100F)
+                        close()
+                    }
+
+                    val lightColoredPoint1 = Offset(0F, height * 0.35F)
+                    val lightColoredPoint2 = Offset(width * 0.1F, height * 0.4F)
+                    val lightColoredPoint3 = Offset(width * 0.3F, height * 0.35F)
+                    val lightColoredPoint4 = Offset(width * 0.65F, height.toFloat())
+                    val lightColoredPoint5 = Offset(width * 1.4F, -height.toFloat() / 3F)
+
+                    val lightColoredPath = Path().apply {
+                        moveTo(lightColoredPoint1.x, lightColoredPoint1.y)
+                        standardQuadFromTo(lightColoredPoint1, lightColoredPoint2)
+                        standardQuadFromTo(lightColoredPoint2, lightColoredPoint3)
+                        standardQuadFromTo(lightColoredPoint3, lightColoredPoint4)
+                        standardQuadFromTo(lightColoredPoint4, lightColoredPoint5)
+                        lineTo(width.toFloat() + 100F, height.toFloat() + 100F)
+                        lineTo(-100F, height.toFloat() + 100F)
+                        close()
+                    }
+
+                    Canvas(modifier = Modifier.fillMaxSize()) {
+                        drawPath(
+                            path = mediumColoredPath,
+                            color = features[i].mediumColor
+                        )
+
+                        drawPath(
+                            path = lightColoredPath,
+                            color = features[i].lightColor
+                        )
+                    }
+
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(16.dp)
+                    ) {
+                        Text(
+                            text = features[i].title,
+                            style = MaterialTheme.typography.h2,
+                            lineHeight = 26.sp,
+                            modifier = Modifier
+                                .align(Alignment.TopStart)
+                        )
+
+                        Icon(
+                            painter = painterResource(id = features[i].iconId),
+                            contentDescription = features[i].title,
+                            tint = Color.White,
+                            modifier = Modifier.align(Alignment.BottomStart)
+                        )
+
+                        Text(
+                            text = "Start",
+                            color = TextWhite,
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier
+                                .clickable{
+
+                            }
+                                .align(Alignment.BottomEnd)
+                                .
+                        )
                     }
                 }
             }
