@@ -45,6 +45,8 @@ import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.*
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -930,6 +932,39 @@ fun HowToMakeTimer(
             Text(
                 text = if (isTimerRunning && currentTime >= 0L) "Stop" else if (!isTimerRunning && currentTime >= 0L) "Start" else "Restart"
             )
+        }
+    }
+}
+
+@Suppress("unused")
+@Composable
+fun HowToMakeBottomNavigationWithBadges(navController: NavHostController) {
+    NavHost(navController = navController, startDestination = "Home") {
+        composable("Home") {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(text = "Home Screen")
+            }
+        }
+
+        composable("Chat") {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(text = "Chat Screen")
+            }
+        }
+
+        composable("Settings") {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(text = "Settings Screen")
+            }
         }
     }
 }
