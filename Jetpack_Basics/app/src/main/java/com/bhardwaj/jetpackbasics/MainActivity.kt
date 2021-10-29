@@ -1,5 +1,6 @@
 package com.bhardwaj.jetpackbasics
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.animation.OvershootInterpolator
@@ -844,11 +845,11 @@ fun HowToMakeAnimatedDropDownBox(
 @Suppress("unused")
 @Composable
 fun HowToMakeTimer(
-    modifier: Modifier = Modifier,
-    totalTime: Long,
-    handleColor: Color,
-    activeBarColor: Color,
-    inActiveBarColor: Color,
+    modifier: Modifier = Modifier.size(200.dp),
+    totalTime: Long = 100L * 1000L,
+    handleColor: Color = Color.Green,
+    activeBarColor: Color = Color.DarkGray,
+    inActiveBarColor: Color = Color(0xFF37B900),
     initialValue: Float = 0F,
     strokeWidth: Dp = 5.dp
 ) {
@@ -856,6 +857,14 @@ fun HowToMakeTimer(
     var value by remember { mutableStateOf(initialValue) }
     var currentTime by remember { mutableStateOf(totalTime) }
     var isTimerRunning by remember { mutableStateOf(false) }
+
+    LaunchedEffect(key1 = currentTime, key2 = isTimerRunning) {
+        if (currentTime > 0 && isTimerRunning) {
+            delay(100L)
+            currentTime -= 100L
+            value = currentTime / totalTime.toFloat()
+        }
+    }
 
     Box(
         contentAlignment = Alignment.Center,
