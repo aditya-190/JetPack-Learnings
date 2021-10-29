@@ -859,11 +859,14 @@ fun HowToMakeTimer(
     var isTimerRunning by remember { mutableStateOf(false) }
 
     LaunchedEffect(key1 = currentTime, key2 = isTimerRunning) {
-        if (currentTime > 0 && isTimerRunning) {
+        if (currentTime > 0L && isTimerRunning) {
             delay(100L)
             currentTime -= 100L
             value = currentTime / totalTime.toFloat()
         }
+
+        if (currentTime == 0L)
+            isTimerRunning = false
     }
 
     Box(
@@ -926,6 +929,7 @@ fun HowToMakeTimer(
                     if (currentTime <= 0L) {
                         currentTime = totalTime
                         isTimerRunning = false
+                        value = 1F
                     } else {
                         isTimerRunning = !isTimerRunning
                     }
@@ -936,7 +940,10 @@ fun HowToMakeTimer(
                 )
             ) {
                 Text(
-                    text = if (isTimerRunning && currentTime >= 0L) "Stop" else if (!isTimerRunning && currentTime >= 0L) "Start" else "Restart"
+                    text =
+                    if (currentTime > 0L && !isTimerRunning) "Start"
+                    else if (currentTime > 0L && isTimerRunning) "Stop"
+                    else "Restart"
                 )
             }
         }
