@@ -848,6 +848,13 @@ fun HowToMakeAnimatedDropDownBox(
 @Suppress("unused")
 @Composable
 fun HowToMakeTimer(
+    modifier: Modifier = Modifier,
+    totalTime: Long,
+    handleColor: Color,
+    activeBarColor: Color,
+    inActiveBarColor: Color,
+    initialValue: Float = 0F,
+    strokeWidth: Dp = 5.dp
 ) {
 
 }
