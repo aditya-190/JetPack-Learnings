@@ -30,10 +30,7 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.pointerInteropFilter
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.layout.boundsInWindow
-import androidx.compose.ui.layout.layoutId
-import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.layout.*
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
@@ -45,6 +42,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.*
@@ -53,9 +51,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlin.math.PI
-import kotlin.math.atan2
-import kotlin.math.roundToInt
+import kotlin.math.*
 import kotlin.random.Random
 
 class MainActivity : ComponentActivity() {
@@ -856,7 +852,79 @@ fun HowToMakeTimer(
     initialValue: Float = 0F,
     strokeWidth: Dp = 5.dp
 ) {
+    var size by remember { mutableStateOf(IntSize.Zero) }
+    var value by remember { mutableStateOf(initialValue) }
+    var currentTime by remember { mutableStateOf(totalTime) }
+    var isTimerRunning by remember { mutableStateOf(false) }
 
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = modifier.onSizeChanged {
+            size = it
+        }
+    ) {
+        Canvas(
+            modifier = modifier
+        ) {
+            drawArc(
+                color = inActiveBarColor,
+                startAngle = -215F,
+                sweepAngle = 250F,
+                useCenter = false,
+                size = Size(size.width.toFloat(), size.height.toFloat()),
+                style = Stroke(strokeWidth.toPx(), cap = StrokeCap.Round)
+            )
+
+            drawArc(
+                color = activeBarColor,
+                startAngle = -215F,
+                sweepAngle = 250F * value,
+                useCenter = false,
+                size = Size(size.width.toFloat(), size.height.toFloat()),
+                style = Stroke(strokeWidth.toPx(), cap = StrokeCap.Round)
+            )
+
+            val center = Offset(size.width / 2F, size.height / 2F)
+            val angleBeta = (250F * value + 145F) * (PI / 180F).toFloat()
+            val radius = size.width / 2F
+            val a = cos(angleBeta) * radius
+            val b = sin(angleBeta) * radius
+
+            drawPoints(
+                listOf(Offset(center.x + a, center.y + b)),
+                pointMode = PointMode.Points,
+                color = handleColor,
+                strokeWidth = (strokeWidth * 3F).toPx(),
+                cap = StrokeCap.Round
+            )
+        }
+
+        Text(
+            text = (currentTime / 1000L).toString(),
+            fontSize = 44.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color.White
+        )
+
+        Button(
+            onClick = {
+                if (currentTime <= 0L) {
+                    currentTime = totalTime
+                    isTimerRunning = false
+                } else {
+                    isTimerRunning = !isTimerRunning
+                }
+            },
+            modifier = Modifier.align(Alignment.BottomCenter),
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = if (!isTimerRunning || currentTime <= 0L) Color.Green else Color.Red
+            )
+        ) {
+            Text(
+                text = if (isTimerRunning && currentTime >= 0L) "Stop" else if (!isTimerRunning && currentTime >= 0L) "Start" else "Restart"
+            )
+        }
+    }
 }
 
 
