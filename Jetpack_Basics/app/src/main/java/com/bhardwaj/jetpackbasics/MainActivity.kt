@@ -1,6 +1,5 @@
 package com.bhardwaj.jetpackbasics
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.animation.OvershootInterpolator
@@ -24,7 +23,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
