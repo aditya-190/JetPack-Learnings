@@ -847,9 +847,9 @@ fun HowToMakeAnimatedDropDownBox(
 fun HowToMakeTimer(
     modifier: Modifier = Modifier.size(200.dp),
     totalTime: Long = 100L * 1000L,
-    handleColor: Color = Color.Green,
-    activeBarColor: Color = Color.DarkGray,
-    inActiveBarColor: Color = Color(0xFF37B900),
+    handleColor: Color = Color(0xFF37B900),
+    activeBarColor: Color = Color.Green,
+    inActiveBarColor: Color = Color.DarkGray,
     initialValue: Float = 1F,
     strokeWidth: Dp = 5.dp
 ) {
@@ -867,71 +867,78 @@ fun HowToMakeTimer(
     }
 
     Box(
-        contentAlignment = Alignment.Center,
-        modifier = modifier.onSizeChanged {
-            size = it
-        }
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xFF202020)),
+        contentAlignment = Alignment.Center
     ) {
-        Canvas(
-            modifier = modifier
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = modifier.onSizeChanged {
+                size = it
+            }
         ) {
-            drawArc(
-                color = inActiveBarColor,
-                startAngle = -215F,
-                sweepAngle = 250F,
-                useCenter = false,
-                size = Size(size.width.toFloat(), size.height.toFloat()),
-                style = Stroke(strokeWidth.toPx(), cap = StrokeCap.Round)
-            )
+            Canvas(
+                modifier = modifier
+            ) {
+                drawArc(
+                    color = inActiveBarColor,
+                    startAngle = -215F,
+                    sweepAngle = 250F,
+                    useCenter = false,
+                    size = Size(size.width.toFloat(), size.height.toFloat()),
+                    style = Stroke(strokeWidth.toPx(), cap = StrokeCap.Round)
+                )
 
-            drawArc(
-                color = activeBarColor,
-                startAngle = -215F,
-                sweepAngle = 250F * value,
-                useCenter = false,
-                size = Size(size.width.toFloat(), size.height.toFloat()),
-                style = Stroke(strokeWidth.toPx(), cap = StrokeCap.Round)
-            )
+                drawArc(
+                    color = activeBarColor,
+                    startAngle = -215F,
+                    sweepAngle = 250F * value,
+                    useCenter = false,
+                    size = Size(size.width.toFloat(), size.height.toFloat()),
+                    style = Stroke(strokeWidth.toPx(), cap = StrokeCap.Round)
+                )
 
-            val center = Offset(size.width / 2F, size.height / 2F)
-            val angleBeta = (250F * value + 145F) * (PI / 180F).toFloat()
-            val radius = size.width / 2F
-            val a = cos(angleBeta) * radius
-            val b = sin(angleBeta) * radius
+                val center = Offset(size.width / 2F, size.height / 2F)
+                val angleBeta = (250F * value + 145F) * (PI / 180F).toFloat()
+                val radius = size.width / 2F
+                val a = cos(angleBeta) * radius
+                val b = sin(angleBeta) * radius
 
-            drawPoints(
-                listOf(Offset(center.x + a, center.y + b)),
-                pointMode = PointMode.Points,
-                color = handleColor,
-                strokeWidth = (strokeWidth * 3F).toPx(),
-                cap = StrokeCap.Round
-            )
-        }
+                drawPoints(
+                    listOf(Offset(center.x + a, center.y + b)),
+                    pointMode = PointMode.Points,
+                    color = handleColor,
+                    strokeWidth = (strokeWidth * 3F).toPx(),
+                    cap = StrokeCap.Round
+                )
+            }
 
-        Text(
-            text = (currentTime / 1000L).toString(),
-            fontSize = 44.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.White
-        )
-
-        Button(
-            onClick = {
-                if (currentTime <= 0L) {
-                    currentTime = totalTime
-                    isTimerRunning = false
-                } else {
-                    isTimerRunning = !isTimerRunning
-                }
-            },
-            modifier = Modifier.align(Alignment.BottomCenter),
-            colors = ButtonDefaults.buttonColors(
-                backgroundColor = if (!isTimerRunning || currentTime <= 0L) Color.Green else Color.Red
-            )
-        ) {
             Text(
-                text = if (isTimerRunning && currentTime >= 0L) "Stop" else if (!isTimerRunning && currentTime >= 0L) "Start" else "Restart"
+                text = (currentTime / 1000L).toString(),
+                fontSize = 44.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White
             )
+
+            Button(
+                onClick = {
+                    if (currentTime <= 0L) {
+                        currentTime = totalTime
+                        isTimerRunning = false
+                    } else {
+                        isTimerRunning = !isTimerRunning
+                    }
+                },
+                modifier = Modifier.align(Alignment.BottomCenter),
+                colors = ButtonDefaults.buttonColors(
+                    backgroundColor = if (!isTimerRunning || currentTime <= 0L) Color.Green else Color.Red
+                )
+            ) {
+                Text(
+                    text = if (isTimerRunning && currentTime >= 0L) "Stop" else if (!isTimerRunning && currentTime >= 0L) "Start" else "Restart"
+                )
+            }
         }
     }
 }
