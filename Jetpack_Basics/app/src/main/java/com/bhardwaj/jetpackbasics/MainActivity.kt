@@ -62,7 +62,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            HowToMakeAnimatedDropDownBox()
+            HowToMakeTimer()
         }
     }
 }
@@ -842,6 +842,14 @@ fun HowToMakeAnimatedDropDownBox(
             )
         }
     }
+}
+
+
+@Suppress("unused")
+@Composable
+fun HowToMakeTimer(
+) {
+
 }
 
 
