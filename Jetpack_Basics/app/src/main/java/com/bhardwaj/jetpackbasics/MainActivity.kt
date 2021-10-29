@@ -848,7 +848,7 @@ fun HowToMakeTimer(
     handleColor: Color = Color.Green,
     activeBarColor: Color = Color.DarkGray,
     inActiveBarColor: Color = Color(0xFF37B900),
-    initialValue: Float = 0F,
+    initialValue: Float = 1F,
     strokeWidth: Dp = 5.dp
 ) {
     var size by remember { mutableStateOf(IntSize.Zero) }
