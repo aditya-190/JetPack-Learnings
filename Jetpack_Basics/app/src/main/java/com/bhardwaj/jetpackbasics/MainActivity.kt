@@ -14,13 +14,16 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
@@ -59,7 +62,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            HowToMakeAnimatedCircularProgressBar(0.7F, 100)
+            HowToMakeAnimatedDropDownBox()
         }
     }
 }
@@ -774,6 +777,85 @@ fun UseOfMultiSelectLazyColumn() {
         }
     }
 }
+
+@Suppress("unused")
+@Composable
+fun HowToMakeAnimatedDropDownBox(
+    modifier: Modifier = Modifier,
+    text: String = "Hello World!",
+    isOpened: Boolean = false,
+) {
+    var isOpen by remember { mutableStateOf(isOpened) }
+
+    val alpha = animateFloatAsState(
+        targetValue = if (isOpen) 1F else 0F,
+        animationSpec = tween(durationMillis = 300)
+    )
+
+    val rotateX = animateFloatAsState(
+        targetValue = if (isOpen) 0F else -90F,
+        animationSpec = tween(durationMillis = 500, easing = FastOutSlowInEasing)
+    )
+
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+    ) {
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = modifier.fillMaxWidth()
+        ) {
+            Text(text = text, color = Color.Black, fontSize = 16.sp)
+            Icon(
+                imageVector = Icons.Default.ArrowDropDown,
+                contentDescription = "Open or Close the Drop Down",
+                tint = Color.Black,
+                modifier = Modifier
+                    .clickable {
+                        isOpen = !isOpen
+                    }
+                    .scale(1F, if (isOpen) -1F else 1F)
+            )
+        }
+
+        Spacer(modifier = Modifier.height(10.dp))
+
+        Box(
+            modifier = Modifier
+                .height(100.dp)
+                .fillMaxWidth()
+                .graphicsLayer {
+                    transformOrigin = TransformOrigin(0.5F, 0F)
+                    rotationX = rotateX.value
+                }
+                .alpha(alpha.value)
+                .background(Color(0xFFF2F2F2)),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = "This is now Revealed.",
+                color = Color.Black,
+            )
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
