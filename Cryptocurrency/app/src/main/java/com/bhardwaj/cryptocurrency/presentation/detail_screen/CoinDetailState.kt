@@ -1,9 +1,9 @@
-package com.bhardwaj.cryptocurrency.presentation.list_screen
+package com.bhardwaj.cryptocurrency.presentation.detail_screen
 
-import com.bhardwaj.cryptocurrency.domain.model.Coin
+import com.bhardwaj.cryptocurrency.domain.model.CoinDetail
 
-data class CoinListState(
+data class CoinDetailState(
     val isLoading: Boolean = false,
-    val coins: List<Coin> = emptyList(),
+    val coin: CoinDetail? = null,
     val error: String = ""
 )

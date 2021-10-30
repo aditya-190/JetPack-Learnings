@@ -1,4 +1,7 @@
 package com.bhardwaj.cryptocurrency
 
-class CryptoApplication {
-}
+import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
+
+@HiltAndroidApp
+class CryptoApplication: Application()

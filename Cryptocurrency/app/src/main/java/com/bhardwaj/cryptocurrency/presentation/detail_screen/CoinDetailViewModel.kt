@@ -1,41 +1,44 @@
-package com.bhardwaj.cryptocurrency.presentation.list_screen
+package com.bhardwaj.cryptocurrency.presentation.detail_screen
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.bhardwaj.cryptocurrency.common.Constants
 import com.bhardwaj.cryptocurrency.common.Resource
-import com.bhardwaj.cryptocurrency.domain.use_case.get_list.GetCoinsUseCase
+import com.bhardwaj.cryptocurrency.domain.use_case.get_detail.GetCoinDetailUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @HiltViewModel
-class CoinListViewModel @Inject constructor(
-    private val getCoinsUseCase: GetCoinsUseCase
+class CoinDetailViewModel @Inject constructor(
+    private val getCoinDetailUseCase: GetCoinDetailUseCase,
+    private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
-    private val _state = mutableStateOf(CoinListState())
-    val state: State<CoinListState> = _state
+    private val _state = mutableStateOf(CoinDetailState())
+    val state: State<CoinDetailState> = _state
 
     init {
-        getCoins()
+        savedStateHandle.get<String>(Constants.PARAM_COIN_ID)
     }
 
-    private fun getCoins() {
-        getCoinsUseCase().onEach { result ->
+    private fun getCoinDetails(coinId: String) {
+        getCoinDetailUseCase(coinId).onEach { result ->
             when (result) {
                 is Resource.Success -> {
-                    _state.value = CoinListState(coins = result.data ?: emptyList())
+                    _state.value = CoinDetailState(coin = result.data)
                 }
 
                 is Resource.Error -> {
                     _state.value =
-                        CoinListState(error = result.message ?: "An unexpected error occurred.")
+                        CoinDetailState(error = result.message ?: "An unexpected error occurred.")
                 }
 
                 is Resource.Loading -> {
-                    _state.value = CoinListState(isLoading = true)
+                    _state.value = CoinDetailState(isLoading = true)
                 }
             }
         }.launchIn(viewModelScope)
