@@ -1,4 +1,4 @@
-package com.bhardwaj.cryptocurrency
+package com.bhardwaj.cryptocurrency.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
