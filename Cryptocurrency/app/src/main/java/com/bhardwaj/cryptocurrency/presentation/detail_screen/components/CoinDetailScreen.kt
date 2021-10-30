@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -20,6 +21,7 @@ import com.bhardwaj.cryptocurrency.presentation.Screen
 import com.bhardwaj.cryptocurrency.presentation.detail_screen.CoinDetailViewModel
 import com.bhardwaj.cryptocurrency.presentation.list_screen.CoinListViewModel
 import com.bhardwaj.cryptocurrency.presentation.list_screen.components.CoinListItem
+import com.google.accompanist.flowlayout.FlowRow
 
 @Composable
 fun CoinDetailScreen(
@@ -74,6 +76,36 @@ fun CoinDetailScreen(
                     )
 
                     Spacer(modifier = Modifier.height(15.dp))
+
+                    FlowRow(
+                        mainAxisSpacing = 10.dp,
+                        crossAxisSpacing = 10.dp,
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        coin.tags.forEach { tag ->
+                            CoinTag(tag = tag)
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(15.dp))
+
+                    Text(
+                        text = "Team Members",
+                        style = MaterialTheme.typography.h3,
+                    )
+
+                    Spacer(modifier = Modifier.height(15.dp))
+                }
+
+                items(coin.team) { teamMember ->
+                    CoinTeamItem(
+                        teamMember = teamMember,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(10.dp)
+                    )
+
+                    Divider()
                 }
             }
         }
