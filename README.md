@@ -1,6 +1,6 @@
 <h1 align="center">JetPack- Learnings</h1>
 
-## 👦 Sub Projects:
+## 🖥 Sub Projects:
 - CryptoCurrency Application.
 - Meditation App
 - How To Make Series of Jetpack Compose Ready to use functions.
