@@ -1,5 +1,12 @@
 <h1 align="center">JetPack- Learnings</h1>
 
+## 👦 Sub Projects:
+- CryptoCurrency Application.
+- Meditation App
+- How To Make Series of Jetpack Compose Ready to use functions.
+- 100 Days of Jetpack Compose [In Progress].
+
+
 ## 👦 Developed By:
 <h2 align="center">Aditya Bhardwaj</h2>
 <p align="center">
